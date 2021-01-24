@@ -14,5 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('template.index');
 });
+
+Route::get('/hospitals', function () {
+    return view('template.hospitals');
+});
+
+Route::get('/payments', function () {
+    return view('template.payments');
+});
+
+Route::get('/admin', function () {
+    return view('template.admin');
+});
+
+
