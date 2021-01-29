@@ -55,8 +55,9 @@ class DistrictController extends Controller
     public function show( Request $request ) {
 
         $district = District::where('name', $request->name)->get()->first();
+    
 
-        return view('district.show', $district );
+        return view('district.show', compact('district'));
     }
 
 
