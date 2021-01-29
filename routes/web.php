@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DistrictController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +29,25 @@ Route::get('/payments', function () {
 Route::get('/admin', function () {
     return view('template.admin');
 });
+
+
+//Testing Controllers
+//C
+//use App\Http\Controllers\UserController;
+
+//Route::get('/user/{id}', [UserController::class, 'show']);
+
+
+Route::get('/districts', [DistrictController::class, 'index']);
+
+//Add new District
+Route::post('districts', [DistrictController::class, 'store']);
+
+//Delete a District
+Route::delete('districts/', [DistrictController::class, 'delete']);
+
+//Search for a particular district
+Route::get('district/{name}', [DistrictController::class, 'show']);
+
 
 
