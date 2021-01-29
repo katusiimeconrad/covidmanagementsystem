@@ -44,11 +44,21 @@ class DistrictController extends Controller
 
     //find a specific district
 
+    /*
     public function show( $name ) {
 
        return view('district.show', ['district' => District::findOrFail($name)]);
 
     }
+    */
+
+    public function show( Request $request ) {
+
+        $district = District::where('name', $request->name)->get()->first();
+
+        return view('district.show', $district );
+    }
+
 
     /*
       {

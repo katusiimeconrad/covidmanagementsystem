@@ -47,7 +47,7 @@ Route::post('districts', [DistrictController::class, 'store']);
 Route::delete('districts/', [DistrictController::class, 'delete']);
 
 //Search for a particular district
-Route::get('district/{name}', [DistrictController::class, 'show']);
+Route::get('/districtsr', [DistrictController::class, 'show'])->name('district.show');
 
 
 

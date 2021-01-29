@@ -50,7 +50,7 @@
     </div>
 
     <div>
-        <form action="districts/" method="GET">
+        <form action="{{route("district.show")}}" method="GET">
             {{ csrf_field() }}
             <h4>Search for a district </h4>
            <div class="form-group">
