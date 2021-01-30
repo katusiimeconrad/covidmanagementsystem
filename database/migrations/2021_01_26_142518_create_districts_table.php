@@ -15,8 +15,9 @@ class CreateDistrictsTable extends Migration
     {
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            $table->string('districtName');
-            $table->enum('region', ['North','East','South' , 'West', 'Central']);
+            $table->string('name');
+            $table->string('code');
+            $table->enum('region', ['North','East','South' , 'West', 'Central'])->nullable();
             $table->timestamps();
         });
     }

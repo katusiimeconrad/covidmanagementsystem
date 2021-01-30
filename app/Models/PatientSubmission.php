@@ -10,4 +10,6 @@ class PatientSubmission extends Model
     use HasFactory;
     protected $guarded = [];
 
+    
+
 }

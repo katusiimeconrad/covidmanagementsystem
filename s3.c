@@ -104,9 +104,9 @@ void patientDetails(int sockfd){
                 int officer;
                 char buff[201];
                 char buff2[201];
-                char filename[255] = "";
+                char filename[255] = "/var/www/html/RECESS/";
                 strcat(filename,ptr);
-                char filename2[255] = "";
+                char filename2[255] = "/var/www/html/RECESS/";
                 strcat(district,".dat");
                 strcat(filename2,district);
                 FILE *fp = fopen(filename,"r"); if(fp==NULL){perror("Failed to open' ");}//text file to be uploaded by the agent
@@ -166,7 +166,7 @@ void patientDetails(int sockfd){
                 //strcpy(dist,district);
 
                 //specify file path
-                char filename2[255] = "";
+                char filename2[255] = "/var/www/html/RECESS/";
                 //get specific district/ hospital
                 strcat(tempdistrict, ".dat");
                 strcat(filename2,tempdistrict);
@@ -192,7 +192,7 @@ void patientDetails(int sockfd){
             int i =0;
             char buff[201];
             char buff2[255] = ""; 
-            char filename2[255] = "";
+            char filename2[255] = "/var/www/html/RECESS/";
             strcat(tempdistrict,".dat");
             strcat(filename2,tempdistrict);
             FILE *fp2 = fopen(filename2,"rb+"); if(fp2==NULL){perror("Failed to open' ");exit(1);}//text file to be uploaded by the agent
@@ -223,7 +223,7 @@ void patientDetails(int sockfd){
         else if(strcmp(fun,"Check_status") == 0){
             int officer;
             char snum[5];
-            char filename2[255] = "";
+            char filename2[255] = "/var/www/html/RECESS/";
             //get specific district/ hospital
             strcat(tempdistrict, ".dat");
             strcat(filename2,tempdistrict);
