@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [AuthenticatedSessionController::class, 'create'])
+                ->middleware('guest')
+                ->name('login');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/patients', function(){
     return view('template.index');
 });
 
-Route::get('/hospitals', function () {
-    return view('template.hospitals');
-});
-
-Route::get('/payments', function () {
-    return view('template.payments');
-});
-
-Route::get('/admin', function () {
-    return view('template.admin');
-});
-
-
+require __DIR__.'/auth.php';
