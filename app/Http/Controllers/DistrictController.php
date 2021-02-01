@@ -2,93 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\District;
 use Illuminate\Http\Request;
+use App\Models\District;
 
 class DistrictController extends Controller
 {
-    //
     public function index(){
+        
         $districts = District::all();
-
-        return view('district.index', ['districts' => $districts]);
-
-
+        return view('districts.index', compact('districts'));
     }
 
-   /* public function store(Request $request) {
-        $district = new District();
-        $district->name = $request->name;
-        $district->code = $request->code;
+    public function create(){
+        return view('districts.create');
+    }
 
+    public function store(Request $request){
+        $this->validate($request, [
+            'districtName'      =>  'required|max:191|unique:districts',
+            'districtRegion'           => 'required|notIn:0',
+        ]);
+
+        $district = new District;
+        $district->districtName = $request->input('districtName');
+        $district->region = $request->input('districtRegion');
         $district->save();
+        
+        return redirect()->route('districts.index');
+        
     }
 
-*/
-    //Adding
-    public function store(Request $request) {
-        $district = District::create([
-            'name' => $request->name,
-            'code' => $request->code
-        ]);
-        return $this->index();
+    public function edit($id){
+        dd('edit');
     }
 
-    //Deleting
-
-    public function delete(Request $request) {
-        $deletedrows = District::where('name', $request->name)->delete();
-
-        return $this->index();
+    public function update(Request $request){
+        dd('update');
     }
 
-    //find a specific district
-
-    /*
-    public function show( $name ) {
-
-       return view('district.show', ['district' => District::findOrFail($name)]);
-
+    public function delete($id){
+        dd('delete');
     }
-    */
-
-    public function show( Request $request ) {
-
-        $district = District::where('name', $request->name)->get()->first();
-    
-
-        return view('district.show', compact('district'));
-    }
-
-
-    /*
-      {
-           public function show($id)
-    {
-        return view('user.profile', [
-            'user' => User::findOrFail($id)
-        ]);
-    }
-    }
-
-
-
-
-    */
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ///Route::get('/', function () {
-   /// return view('greeting', ['name' => 'James']);
-/// });
 }

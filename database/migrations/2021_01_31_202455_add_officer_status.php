@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDistrictsTable extends Migration
+class AddOfficerStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateDistrictsTable extends Migration
      */
     public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
-            $table->id();
-            $table->string('districtName');
-            $table->enum('region', ['North','East','South' , 'West', 'Central']);
-            $table->timestamps();
+        Schema::table('health_officers', function (Blueprint $table) {
+            $table->string('status')->default('active');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateDistrictsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('districts');
+        Schema::table('health_officers', function (Blueprint $table) {
+            //
+        });
     }
 }
