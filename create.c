@@ -24,7 +24,7 @@ int main(void)
     int officer = 0;
     int count = 0;
     struct patient one = {0,"","","","","",""};
-    FILE *fp = fopen("Mbuya.dat","wb");
+    FILE *fp = fopen("Kiruddu.dat","wb");
     /*
     printf("Fname: %d",strlen(one.fname));
     printf("\nLname: %d",strlen(one.lname));

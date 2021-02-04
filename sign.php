@@ -255,32 +255,35 @@
 
                    
                     if(!(strcmp($recommender,"") == 0)){
-                         $select =  "select * from members where fName = '$reco[0]' && LName = '$reco[1]'";
-                         $select1 = mysqli_query($conn,$select);
-                         $select2 = mysqli_fetch_assoc($select1);
-                         $check = "INSERT INTO members(fName,lName,gender,dateOfEnrollment,recommenderID,agentID)values('$fname','$lname','$sex','$date',$select2[id],$james[id])";
-                         if(!mysqli_query($conn,$check)){
-                              echo "Didnt insert".mysqli_error($conn);
-                         }
-                         else{
-                              $z = 1;
-                              $data++;
-                              fseek($fp,-4,SEEK_END);
-                              fwrite($fp,$data);
-                         }
-                         $select =  "select * from members where lName = '$reco[0]' && fName = '$reco[1]'";
-                         $select1 = mysqli_query($conn,$select);
-                         $select2 = mysqli_fetch_assoc($select1);
-                         $check = "INSERT INTO members(fName,lName,gender,dateOfEnrollment,recommenderID,agentID)values('$fname','$lname','$sex','$date',$select2[id],$james[id])";
-                         if(!mysqli_query($conn,$check)){
-                              echo "Didnt insert".mysqli_error($conn);
-                         }
-                         else{
-                              $z = 1;
-                              $data++;
-                              fseek($fp,-4,SEEK_END);
-                              fwrite($fp,$data);
-                         } 
+                         //order of name then insert
+                              $select =  "select * from members where fName = '$reco[0]' && LName = '$reco[1]'";
+                              $select1 = mysqli_query($conn,$select);
+                              $select2 = mysqli_fetch_assoc($select1);
+                              $check = "INSERT INTO members(fName,lName,gender,dateOfEnrollment,recommenderID,agentID)values('$fname','$lname','$sex','$date',$select2[id],$james[id])";
+                              if(!mysqli_query($conn,$check)){
+                                   echo "Didnt insert".mysqli_error($conn);
+                              }
+                              else{
+                                   $z = 1;
+                                   $data++;
+                                   fseek($fp,-4,SEEK_END);
+                                   fwrite($fp,$data);
+                              }
+
+                              $select =  "select * from members where lName = '$reco[0]' && fName = '$reco[1]'";
+                              $select1 = mysqli_query($conn,$select);
+                              $select2 = mysqli_fetch_assoc($select1);
+                              $check = "INSERT INTO members(fName,lName,gender,dateOfEnrollment,recommenderID,agentID)values('$fname','$lname','$sex','$date',$select2[id],$james[id])";
+                              if(!mysqli_query($conn,$check)){
+                                   echo "Didnt insert".mysqli_error($conn);
+                              }
+                              else{
+                                   $z = 1;
+                                   $data++;
+                                   fseek($fp,-4,SEEK_END);
+                                   fwrite($fp,$data);
+                              } 
+                         //enz
                     }
                     else{
                  

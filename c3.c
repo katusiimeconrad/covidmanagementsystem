@@ -22,7 +22,7 @@ void addPatient(int sockfd){
 
     printf("          Welcome\n\
 ---------------------------------\n\
-Addpatient patient_name,date,gender,category\n\
+Addpatient FirstName LastName,date,gender,category\n\
 get_statement\n\
 Check_status\n\
 Search criteria (name or date)\n\
@@ -38,7 +38,7 @@ exit\n\
     }while(strcmp(buff,"invalid") == 0);
     
 	do{
-		printf("Enter name: ");
+		printf("Enter Officer Name e.g (John Rubadiri): ");
 		fgets(buff2,50,stdin);
 		//scanf(" %s",buff2);//read the district code of the health official.
 		write(sockfd, buff2, sizeof(buff2));
