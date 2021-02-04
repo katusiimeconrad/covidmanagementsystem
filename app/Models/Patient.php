@@ -12,7 +12,7 @@ class Patient extends Model
 
 
     //Patient is added by one health officer
-    public function healthofficer() {
+    public function healthOfficer() {
         return $this->belongsTo(HealthOfficer::class);
     }
 
@@ -20,10 +20,6 @@ class Patient extends Model
     public function hospital() {
         return $this->belongsTo(Hospital::class);
     }
-
-
-
-
 
 
 

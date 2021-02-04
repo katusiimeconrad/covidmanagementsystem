@@ -57,8 +57,9 @@ class HealthOfficerController extends Controller
     }
 
     public function edit($id){
-        dd('edit');
-        
+        $officer = HealthOfficer::find($id);
+        $healthOfficers = HealthOfficer::all();
+        return view("officer.edit", compact('officer','healthOfficers'));
     }
 
     public function update(Request $request){

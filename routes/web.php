@@ -41,7 +41,6 @@ use App\Http\Controllers\DistrictController;
         //district routes
         Route::group(['prefix'  =>   'districts'], function() {
             Route::get('/', 'App\Http\Controllers\DistrictController@index')->name('districts.index');
-            Route::get('/create', 'App\Http\Controllers\DistrictController@create')->name('districts.create');
             Route::post('/store', 'App\Http\Controllers\DistrictController@store')->name('districts.store');
             Route::get('/{id}/edit', 'App\Http\Controllers\DistrictController@edit')->name('districts.edit');
             Route::post('/update', 'App\Http\Controllers\DistrictController@update')->name('districts.update');
@@ -51,7 +50,6 @@ use App\Http\Controllers\DistrictController;
         //hospitals routes
         Route::group(['prefix'  =>   'hospitals'], function() {
             Route::get('/', 'App\Http\Controllers\HospitalController@index')->name('hospitals.index');
-            Route::get('/create', 'App\Http\Controllers\HospitalController@create')->name('hospitals.create');
             Route::post('/store', 'App\Http\Controllers\HospitalController@store')->name('hospitals.store');
             Route::get('/{id}/edit', 'App\Http\Controllers\HospitalController@edit')->name('hospitals.edit');
             Route::post('/update', 'App\Http\Controllers\HospitalController@update')->name('hospitals.update');
@@ -62,7 +60,6 @@ use App\Http\Controllers\DistrictController;
         //hospitals routes
         Route::group(['prefix'  =>   'officers'], function() {
             Route::get('/', 'App\Http\Controllers\HealthOfficerController@index')->name('officers.index');
-            Route::get('/create', 'App\Http\Controllers\HealthOfficerController@create')->name('officers.create');
             Route::post('/store', 'App\Http\Controllers\HealthOfficerController@store')->name('officers.store');
             Route::get('/{id}/edit', 'App\Http\Controllers\HealthOfficerController@edit')->name('officers.edit');
             Route::post('/update', 'App\Http\Controllers\HealthOfficerController@update')->name('officers.update');

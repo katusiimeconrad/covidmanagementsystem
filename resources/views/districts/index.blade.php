@@ -13,7 +13,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>District Name</label>
-                                <input type="text" class="form-control @error('districtName') is-invalid @enderror" name="districtName" placeholder="Enter District Name">
+                                <input type="text" class="form-control @error('districtName') is-invalid @enderror" name="districtName" placeholder="Enter District Name" value={{old('districtName')}}>
                                 <div class="invalid-feedback active">
                                     <i class="fa fa-exclamation-circle fa-fw"></i> @error('districtName') <span>{{ $message }}</span> @enderror
                                 </div>
@@ -79,8 +79,9 @@
                                 <th>District ID</th>
                                 <th>Name</th>
                                 <th>No. Of Hospitals</th>
-                                <th>No. Of Patients</th>
                                 <th>No. Of Health Officers</th>
+                                <th>No. Of Patients</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,9 +89,26 @@
                                 <tr>
                                     <td>{{$district->id}}</td>
                                     <td>{{$district->districtName}}</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
+                                    <td>{{count($district->hospital)}}</td>
+                                        <!-- count officers in district -->
+                                            @php($officers = 0)
+                                            @foreach($district->hospital as $hospital)
+                                                @php($officers = $officers + $hospital->officerNumber)
+                                            @endforeach
+                                        <!-- end of officer count -->    
+                                    <td>{{$officers}}</td>
+                                        <!-- count patients in district -->
+                                            @php($patients = 0)
+                                            @foreach($district->hospital as $hospital)
+                                                @foreach($hospital->patient as $patient)
+                                                    @php($patients++)
+                                                @endforeach
+                                            @endforeach    
+                                        <!-- end of patient count -->
+                                    <td>{{$patients}}</td>
+                                    <td class = "text-center">
+                                        <a href="{{ route('districts.edit', $district->id) }}" class="btn btn-sm btn-primary" title = "view district"><i class="fa fa-edit"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -1,19 +1,20 @@
 @extends('app')
-@section('content')
 
+@section('content')
     <!-- ================CREATE HOSPITAL ===============-->
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">Hospital Registration</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('hospitals.store') }}" method="POST">
+                <form action="{{ route('hospitals.update') }}" method="POST">
                     @csrf
+                    <input type = "hidden" value = "{{$hospital->id}}" name = "id">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Hospital Name</label>
-                                <input type="text" class="form-control @error('hospitalName') is-invalid @enderror" value = "{{ old('hospitalName')}}" name="hospitalName" placeholder="Enter Hospital Name">
+                                <input type="text" class="form-control @error('hospitalName') is-invalid @enderror" name="hospitalName" placeholder="Enter Hospital Name" value = "{{old('hospitalName',$hospital->hospitalName)}}">
                                 <div class="invalid-feedback active">
                                     <i class="fa fa-exclamation-circle fa-fw"></i> @error('hospitalName') <span>{{ $message }}</span> @enderror
                                 </div>
@@ -24,17 +25,17 @@
                                 <label>Hopital Type</label>
                                 <select class="form-control @error('hospitalType') is-invalid @enderror" name = "hospitalType">
                                     <option value = "0">Select A Hospital Type</option>
-                                    @if (old('hospitalType') == "General")
+                                    @if (old('hospitalType',$hospital->hospitalType) == "General")
                                         <option value="General" selected>General</option>
                                     @else
                                         <option value="General">General</option>
                                     @endif
-                                    @if (old('hospitalType') == "Regional Referral")
+                                    @if (old('hospitalType',$hospital->hospitalType) == "Regional Referral")
                                         <option value="Regional Referral" selected>Regional Referral</option>
                                     @else
                                         <option value="Regional Referral">Regional Referral</option>
                                     @endif
-                                    @if (old('hospitalType') == "National Referral")
+                                    @if (old('hospitalType',$hospital->hospitalType) == "National Referral")
                                         <option value="National Referral" selected>National Referral</option>
                                     @else
                                         <option value="National Referral">National Referral</option>
@@ -53,7 +54,7 @@
                                 <select name="district_id" id="district_id" class="form-control select2bs4 @error('district_id') is-invalid @enderror" style="width: 100%;">
                                     <option value = "0">Select A District</option> 
                                     @foreach($districts as $district)
-                                        @if (old('district_id') == $district->id)
+                                        @if (old('district_id',$hospital->district_id) == $district->id)
                                             <option value="{{ $district->id }}" selected>{{$district->districtName }}</option>
                                         @else
                                             <option value="{{ $district->id }}">{{ $district->districtName }}</option>
@@ -66,55 +67,31 @@
                             </div>     
                         </div>
                     </div>
-                        <button type="submit" class="btn btn-info float-right" ><i class="fas fa-plus"></i> Add Hospital</button>
+                        <button type="submit" class="btn btn-info float-right" ><i class="fas fa-plus"></i> Update Hospital</button>
                     
                 </form>
             </div>
         </div>
     <!-- ==============END OF CREATE HOSPITAL===========-->
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card card-success">
-                <div class="card-header">
-                    <h3 class="card-title">All Registered Hospitals
-                         
-                    </h3>
-                </div>
-                <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>Hospital ID</th>
-                                <th>Name</th>
-                                <th>Region</th>
-                                <th>District</th>
-                                <th>Hospital Type</th>
-                                <th>No. Of Patients</th>
-                                <th>No. Of Health Officers</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($hospitals as $hospital)
-                                <tr>
-                                    <td>{{$hospital->id}}</td>
-                                    <td>{{$hospital->hospitalName}}</td>
-                                    <td>{{$hospital->district->region}}</td>
-                                    <td>{{$hospital->district->districtName}}</td>
-                                    <td>{{$hospital->hospitalType}}</td>
-                                    <td>{{count($hospital->patient)}}</td>
-                                    <td>{{$hospital->officerNumber}}</td>
-                                    <td class = "text-center">
-                                        <a href="{{ route('hospitals.edit', $hospital->id) }}" class="btn btn-sm btn-primary" title = "Edit Hospital"><i class="fa fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-  
+    <ul id="tree-data" style="display:none">
+        <li id="root" class="nav-item">
+            {{$hospital->hospitalName}}
+            <ul type="vertical">
+                <li>
+                    {{'Supervisor'}}
+                    <ul>
+                    @foreach ($healthOfficers as $officer)
+                        <li>{{$officer->firstName.' '.$officer->lastName}}</li>
+                    @endforeach
+                    </ul>
+                </li>
+                <li>
+                    Hey
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div id="tree-view"></div>
+    
 @endsection

@@ -13,10 +13,6 @@ class DistrictController extends Controller
         return view('districts.index', compact('districts'));
     }
 
-    public function create(){
-        return view('districts.create');
-    }
-
     public function store(Request $request){
         $this->validate($request, [
             'districtName'      =>  'required|max:191|unique:districts',
@@ -33,11 +29,30 @@ class DistrictController extends Controller
     }
 
     public function edit($id){
-        dd('edit');
+        $district = District::find($id);
+        $districts = District::all();
+        return view('districts.edit',compact('district','districts'));
     }
 
     public function update(Request $request){
-        dd('update');
+        $district = District::find($request->input('id'));
+        $this->validate($request, [
+            'districtName'      =>  'required|max:191|','unique:districts,districtName,'.$district->id.',id',
+            'districtRegion'           => 'required|notIn:0',
+        ]);
+
+        $district->districtName = $request->input('districtName');
+        $district->region = $request->input('districtRegion');
+        $district->save();
+        
+        return redirect()
+            ->route('districts.edit', [
+                'id'        => $district->id,
+            ]);
+
+        
+
+        
     }
 
     public function delete($id){

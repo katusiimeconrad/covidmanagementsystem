@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
 
-    <!-- ================CREATE HOSPITAL ===============-->
+    <!-- ================CREATE OFFICER ===============-->
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">Health Officer Registration</h3>
@@ -32,10 +32,10 @@
                     <div class="row">
                         <div class = "col-sm-6">
                             <div class="form-group">
-                                <label>Region</label>
+                                <label>Gender</label>
                                 <select class="form-control @error('gender') is-invalid @enderror" name = "gender">
                                     <option value = "0">Select A Gender</option>
-                                    @if (old('gender') == "East")
+                                    @if (old('gender') == "Male")
                                         <option value="Male" selected>Male</option>
                                     @else
                                         <option value="Male">Male</option>
@@ -54,7 +54,7 @@
                 </form>
             </div>
         </div>
-    <!-- ==============END OF CREATE HOSPITAL===========-->
+    <!-- ==============END OF CREATE OFFICER===========-->
 
     <div class="row">
         <div class="col-12">
@@ -74,6 +74,7 @@
                                 <th>Hospital</th>
                                 <th>Status</th>
                                 <th>No. Of Patients Treated</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,7 +89,11 @@
                                         <td>{{$officer->hospital->hospitalName}}</td>
                                     @endif
                                     <td>{{$officer->status}}</td>
-                                    <td>0</td>
+                                    
+                                    <td>{{count($officer->patient)}}</td>
+                                    <td>
+                                        <a href="{{ route('officers.edit', $officer->id) }}" class="btn btn-sm btn-primary" title = "Edit Officer"><i class="fa fa-edit"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
