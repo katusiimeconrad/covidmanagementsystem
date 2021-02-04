@@ -1,28 +1,36 @@
+@extends('app')
+@section('content')
+
 <div class="card-body">
     <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Hospital ID</th>
+                <th>Patient ID</th>
                 <th>Name</th>
-                <th>Region</th>
+                <th>Hospital</th>
+                <th>Health Officer</th>
                 <th>District</th>
-                <th>Hospital Type</th>
-                <th>No. Of Patients</th>
-                <th>No. Of Health Officers</th>
+                <th>Category</th>
+                <th>Gender</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($hospitals as $hospital)
+            @foreach($patients as $patient)
                 <tr>
-                    <td>{{$hospital->id}}</td>
-                    <td><a href="{{route('hospitals.edit',$hospital->id)}}">{{$hospital->hospitalName}}</a></td>
-                    <td>{{$hospital->district->region}}</td>
-                    <td>{{$hospital->district->districtName}}</td>
-                    <td>{{$hospital->hospitalType}}</td>
-                    <td>0</td>
-                    <td>{{$hospital->officerNumber}}</td>
+                    <td>{{$patient->id}}</td>
+                    <td>{{$patient->firstName}} {{$patient->lastName}}</td>
+                    <td>{{$patient->officer->hospital->hospitalName}}</td>
+                    <td>
+                        {{$patient->officer->firstName}} 
+                        {{$patient->officer->lastName}}
+                    </td>
+                    <td>{{$patient->officer->hospital->district->districtName}}</td>
+                    <td>{{$patient->category}}</td>
+                    <td>{{$patient->genderName}}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+
+@endsection

@@ -31,6 +31,16 @@ require __DIR__.'/auth.php';
             return view('dashboard');
         })->name('dashboard');
 
+        //patient routes
+        Route::group(['prefix'  =>   'patients'], function() {
+            Route::get('/', 'App\Http\Controllers\PatientController@index')->name('patients.index');
+            Route::get('/create', 'App\Http\Controllers\PatientController@create')->name('patients.create');
+            Route::post('/store', 'App\Http\Controllers\PatientController@store')->name('patients.store');
+            Route::get('/{id}/edit', 'App\Http\Controllers\PatientController@edit')->name('patients.edit');
+            Route::post('/update', 'App\Http\Controllers\PatientController@update')->name('patients.update');
+            Route::get('/{id}/delete', 'App\Http\Controllers\PatientController@delete')->name('patients.delete');
+        });
+
         //district routes
         Route::group(['prefix'  =>   'districts'], function() {
             Route::get('/', 'App\Http\Controllers\DistrictController@index')->name('districts.index');

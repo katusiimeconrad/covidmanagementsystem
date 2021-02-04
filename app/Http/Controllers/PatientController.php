@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Patient;
+use App\Models\District;
+use App\Models\HealthOfficer;
 
 class PatientController extends Controller
 {
@@ -13,7 +16,10 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        $patients = Patient::all();
+        $districts = District::all();
+        $officers = HealthOfficer::all();
+        return view('patients.index', compact('patients','districts', 'officers'));
     }
 
     /**
