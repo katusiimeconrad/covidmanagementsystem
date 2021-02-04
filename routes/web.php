@@ -22,6 +22,8 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])
 
 require __DIR__.'/auth.php';
 
+        Route::get('/cron','App\Http\Controllers\CronController@index');
+
 
 
     //Authenticated user can access
