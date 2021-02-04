@@ -30,7 +30,7 @@ exit\n\
 ---------------------------------\n");
     
     do{
-        printf("Enter district code: ");//Prompts the health officer to enter the district code.
+        printf("Enter hospital code: ");//Prompts the health officer to enter the district code.
         scanf(" %s",buff2);//read the district code of the health official.
         write(sockfd, buff2, sizeof(buff2));//send to the server the district code captured from the health officer
         read(sockfd, buff, sizeof(buff));//read what is sent back from the server
