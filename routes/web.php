@@ -71,7 +71,7 @@ Route::group(['prefix'  =>   'hospitals'], function() {
 
 });
 
-//hospitals routes
+//Officers routes
 Route::group(['prefix'  =>   'officers'], function() {
     Route::get('/', 'App\Http\Controllers\HealthOfficerController@index')->name('officers.index');
     Route::get('/create', 'App\Http\Controllers\HealthOfficerController@create')->name('officers.create');
