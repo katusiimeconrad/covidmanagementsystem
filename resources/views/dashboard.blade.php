@@ -55,5 +55,4 @@
     </div>
     <!-- ./col -->
   </div>
-  
 @endsection

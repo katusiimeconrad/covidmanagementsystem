@@ -50,8 +50,7 @@
                         <div class = "col-12">
                             <div class="form-group">
                                 <label class="control-label" for="district_id">District:</label>
-                                <select name="district_id" id="district_id" class="form-control @error('district_id') is-invalid @enderror">
-                                    <option value="0">Select a District</option>
+                                <select name="district_id" id="district_id" class="form-control select2bs4 @error('district_id') is-invalid @enderror" style="width: 100%;">
                                     @foreach($districts as $district)
                                         @if (old('district_id') == $district->id)
                                             <option value="{{ $district->id }}" selected>{{$district->districtName }}</option>
@@ -98,7 +97,7 @@
                             @foreach($hospitals as $hospital)
                                 <tr>
                                     <td>{{$hospital->id}}</td>
-                                    <td>{{$hospital->hospitalName}}</td>
+                                    <td><a href="{{route('hospitals.edit',$hospital->id)}}">{{$hospital->hospitalName}}</a></td>
                                     <td>{{$hospital->district->region}}</td>
                                     <td>{{$hospital->district->districtName}}</td>
                                     <td>{{$hospital->hospitalType}}</td>

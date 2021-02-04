@@ -16,8 +16,8 @@ use App\Http\Controllers\DistrictController;
 */
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
-                ->middleware('guest')
-                ->name('login');
+    ->middleware('guest')
+    ->name('login');
 
 
 require __DIR__.'/auth.php';
