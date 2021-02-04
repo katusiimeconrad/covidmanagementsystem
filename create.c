@@ -13,17 +13,18 @@ struct patient{/* structure of a patient going to be written to file*/
     char lname[10];
     char date[11];
     char gender[2];
-    char category[10];
-    char officer[19];
+    char category[4];
+    char officer[25];
 };
 
 int main(void)
 {
+    printf("Size of: %d", sizeof(struct patient));
     int i;
     int officer = 0;
     int count = 0;
     struct patient one = {0,"","","","","",""};
-    FILE *fp = fopen("/","wb");
+    FILE *fp = fopen("Mbuya.dat","wb");
     /*
     printf("Fname: %d",strlen(one.fname));
     printf("\nLname: %d",strlen(one.lname));

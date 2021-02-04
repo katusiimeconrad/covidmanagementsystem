@@ -16,6 +16,10 @@ class Patient extends Model
         return $this->belongsTo(HealthOfficer::class);
     }
 
+    //Patient is added to one hospital
+    public function hospital() {
+        return $this->belongsTo(Hospital::class);
+    }
 
 
 

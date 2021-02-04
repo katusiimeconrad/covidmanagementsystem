@@ -17,17 +17,17 @@ struct patient{           /* structure of a patient going to be written to file*
     char lname[10];
     char date[11];
     char gender[2];
-    char category[10];
-    char officer[19]; 
+    char category[4];
+    char officer[25]; 
 };
 
 
 void patientDetails(int sockfd){
     char buff[60];//used to store the incoming messages
     char buff2[60];//used to store the outgoing messages.    
-    char district[4];//used to store district
-    char tempdistrict[4];//temporary district holder
-    char dist[4];
+    char hospital[15];//used to store hospital
+    char temphospital[15];//temporary hospital holder
+    char hosp[15];
     char name[15];//used to store name
     int check = 0;// used to check if a criteria is matched 
     int len = 0; //length of a buff copied into a variable
@@ -41,11 +41,11 @@ void patientDetails(int sockfd){
     char delim3[] = ",";//delimitor 3 to separate string with ','
     char *textFile; //search if the patients are being added by file or by a command.  
 
-    //AUTHENTCATE DISTRICT
+    //AUTHENTCATE hospital
     do{
         read(sockfd, buff, sizeof(buff));
-        strcpy(district,buff);
-       if(strcmp(buff,"kla") == 0 ||strcmp(buff,"wak") == 0){
+        strcpy(hospital,buff);
+       if(strcmp(buff,"Mulago") == 0 ||strcmp(buff,"Mbuya") == 0 || strcmp(buff,"Kiruddu") == 0){
             strcpy(buff2,"valid");
             check = 1;
         }
@@ -55,6 +55,7 @@ void patientDetails(int sockfd){
         }
         write(sockfd,buff2, sizeof(buff2));
     }while(check == 0);
+
 
     //AUTHENTICATE NAME
     do{
@@ -68,7 +69,7 @@ void patientDetails(int sockfd){
             name[len-1] =0;
 
         //compare of name is a for valid user
-        if(strcmp(name,"Kigula") == 0){
+        if(strcmp(name,"Kigula Jesse") == 0){
             strcpy(buff2,"Valid Name");
             check = 1;
         }
@@ -83,8 +84,8 @@ void patientDetails(int sockfd){
     //FUNCTIONS e.g search, check_status, addfile.
     do{
         struct patient one = {0,"","","","","",""};
-        strcpy(dist,district);
-        strcpy(tempdistrict,district);
+        strcpy(hosp,hospital);
+        strcpy(temphospital,hospital);
         //remove that pesky \n symbol       
         read(sockfd, buff, sizeof(buff));
         strcpy(fun,buff);
@@ -104,11 +105,11 @@ void patientDetails(int sockfd){
                 int officer;
                 char buff[201];
                 char buff2[201];
-                char filename[255] = "/var/www/html/RECESS/";
+                char filename[255] = "";
                 strcat(filename,ptr);
-                char filename2[255] = "/var/www/html/RECESS/";
-                strcat(district,".dat");
-                strcat(filename2,district);
+                char filename2[255] = "";
+                strcat(hospital,".dat");
+                strcat(filename2,hospital);
                 FILE *fp = fopen(filename,"r"); if(fp==NULL){perror("Failed to open' ");}//text file to be uploaded by the agent
                 FILE *fp2 = fopen(filename2,"rb+"); if(fp2==NULL){perror("Failed to open' ");}//data file to which member structure is to be uploaded
                 do{
@@ -119,7 +120,7 @@ void patientDetails(int sockfd){
                         buff[len-1] =0;//get rid of that pesky newline character =)
                     
                     ptr2 = strtok(buff,delim);
-                    while(ptr2 != NULL){ /* copying the buff contents into the structure member*/
+                    while(ptr2 != NULL){ //copying the buff contents into the structure member
                         if(ptr2 != NULL)
                             strcpy(buff2,ptr2);
                         if(strcmp(one.fname,"")==0) { strcpy(one.fname,buff2);; printf(" %s",one.fname);}
@@ -153,7 +154,7 @@ void patientDetails(int sockfd){
                 ptr2 = strtok(ptr,delim);
                 strcpy(one.fname,ptr2);
                 ptr2 =strtok(NULL,delim3);
-                while(ptr2 != NULL){/* copying the buff contents into the structure member*/
+                while(ptr2 != NULL){// copying the buff contents into the structure member
                     if(ptr2 != NULL)
                         strcpy(buff,ptr2);
                     if(strcmp(one.lname,"")==0) {strcpy(one.lname,buff);}
@@ -163,13 +164,14 @@ void patientDetails(int sockfd){
                     strcpy(buff,"");
                     ptr2 = strtok(NULL,delim3);                          
                 }
-                //strcpy(dist,district);
+                //strcpy(hosp,hospital);
 
                 //specify file path
-                char filename2[255] = "/var/www/html/RECESS/";
-                //get specific district/ hospital
-                strcat(tempdistrict, ".dat");
-                strcat(filename2,tempdistrict);
+                char filename2[255] = "";
+                //get specific hospital/ hospital
+                strcat(temphospital, ".dat");
+                strcat(filename2,temphospital);
+                
                 //open file
                 FILE *fp2 = fopen(filename2,"rb+"); if(fp2==NULL){printf("%s",filename2);perror("Failed to open' ");exit(1);}
                 //get last record number stored on file
@@ -192,9 +194,9 @@ void patientDetails(int sockfd){
             int i =0;
             char buff[201];
             char buff2[255] = ""; 
-            char filename2[255] = "/var/www/html/RECESS/";
-            strcat(tempdistrict,".dat");
-            strcat(filename2,tempdistrict);
+            char filename2[255] = "";
+            strcat(temphospital,".dat");
+            strcat(filename2,temphospital);
             FILE *fp2 = fopen(filename2,"rb+"); if(fp2==NULL){perror("Failed to open' ");exit(1);}//text file to be uploaded by the agent
             strcpy(buff,ptr);
             int count = 0;
@@ -223,10 +225,10 @@ void patientDetails(int sockfd){
         else if(strcmp(fun,"Check_status") == 0){
             int officer;
             char snum[5];
-            char filename2[255] = "/var/www/html/RECESS/";
-            //get specific district/ hospital
-            strcat(tempdistrict, ".dat");
-            strcat(filename2,tempdistrict);
+            char filename2[255] = "";
+            //get specific hospital/ hospital
+            strcat(temphospital, ".dat");
+            strcat(filename2,temphospital);
             //open file
             FILE *fp2 = fopen(filename2,"rb+"); if(fp2==NULL){printf("%s",filename2);perror("Failed to open' ");exit(1);}
             //get last record number stored on file
@@ -240,8 +242,9 @@ void patientDetails(int sockfd){
             
 
         }
-        strcpy(district,dist);     
+        strcpy(hospital,hosp);     
     }while(strcmp(fun,"exit") != 0);
+
 
 }
 
