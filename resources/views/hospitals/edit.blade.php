@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <!-- ================CREATE HOSPITAL ===============-->
+    <!-- ================EDIT HOSPITAL ===============-->
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">Hospital Registration</h3>
@@ -72,7 +72,7 @@
                 </form>
             </div>
         </div>
-    <!-- ==============END OF CREATE HOSPITAL===========-->
+    <!-- ==============END OF EDIT HOSPITAL===========-->
 
     <ul id="tree-data" style="display:none">
         <li id="root" class="nav-item">

@@ -1,6 +1,6 @@
 @extends('app')
 @section('content')
-    <!-- ================CREATE OFFICER ===============-->
+    <!-- ================EDIT OFFICER ===============-->
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">Health Officer Registration</h3>
@@ -74,6 +74,6 @@
                 </form>
             </div>
         </div>
-    <!-- ==============END OF CREATE OFFICER===========-->
+    <!-- ==============END OF EDIT OFFICER===========-->
 
 @endsection
