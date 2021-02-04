@@ -26,12 +26,27 @@
                             <div class="container-fluid">
                                 <div class="row mb-2">
                                     <div class="col-sm-6">
-                                        <h1 class="m-0">Patients</h1>
+                                        <h1 class="m-0">
+                                            {{$page = ''}}
+                                            @if (Request::is('patients*'))
+                                                {{$page = 'Patients'}}
+                                            @elseif (Request::is('payments*'))
+                                                {{$page = 'Payments'}}
+                                            @elseif (Request::is('officers*'))
+                                                {{$page = 'Health Officers'}}
+                                            @elseif (Request::is('hospitals*'))
+                                                {{$page = 'Hospitals'}}
+                                            @elseif (Request::is('admin*'))
+                                                {{$page = 'Admininstration'}}
+                                            @elseif (Request::is('districts*'))
+                                                {{$page = 'Districts'}}
+                                            @endif
+                                        </h1>
                                     </div><!-- /.col -->
                                     <div class="col-sm-6">
                                         <ol class="breadcrumb float-sm-right">
-                                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                            <li class="breadcrumb-item active">Patients</li>
+                                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                            <li class="breadcrumb-item active">{{$page}}</li>
                                         </ol>
                                     </div><!-- /.col -->
                                 </div><!-- /.row -->
@@ -43,7 +58,6 @@
                             @yield('content')
                         </div>
                     </section>
-                    @include('partials.footer')
                 </div>
 
             <!----------------scripts--------------->

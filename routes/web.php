@@ -16,8 +16,8 @@ use App\Http\Controllers\DistrictController;
 */
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
-                ->middleware('guest')
-                ->name('login');
+    ->middleware('guest')
+    ->name('login');
 
 
 Route::get('/dashboard', function () {
@@ -37,9 +37,6 @@ require __DIR__.'/auth.php';
 //Route::get('/user/{id}', [UserController::class, 'show']);
 
 
-Route::get('/hospitals', function () {
-    return view('hospitals.index');
-});
 
 Route::get('/payments', function () {
     return view('payments.index');
@@ -49,6 +46,15 @@ Route::get('/admin', function () {
     return view('admin.index');
 });
 
+//patient routes
+Route::group(['prefix'  =>   'districts'], function() {
+    Route::get('/', 'App\Http\Controllers\PatientController@index')->name('districts.index');
+    Route::get('/create', 'App\Http\Controllers\PatientController@create')->name('districts.create');
+    Route::post('/store', 'App\Http\Controllers\PatientController@store')->name('districts.store');
+    Route::get('/{id}/edit', 'App\Http\Controllers\PatientController@edit')->name('districts.edit');
+    Route::post('/update', 'App\Http\Controllers\PatientController@update')->name('districts.update');
+    Route::get('/{id}/delete', 'App\Http\Controllers\PatientController@delete')->name('districts.delete');
+});
 
 //district routes
 Route::group(['prefix'  =>   'districts'], function() {
@@ -65,7 +71,7 @@ Route::group(['prefix'  =>   'hospitals'], function() {
     Route::get('/', 'App\Http\Controllers\HospitalController@index')->name('hospitals.index');
     Route::get('/create', 'App\Http\Controllers\HospitalController@create')->name('hospitals.create');
     Route::post('/store', 'App\Http\Controllers\HospitalController@store')->name('hospitals.store');
-    Route::get('/{id}/edit', 'App\Http\Controllers\HospitalController@edit')->name('hospitals.edit');
+    Route::get('/edit/{id}', 'App\Http\Controllers\HospitalController@edit')->name('hospitals.edit');
     Route::post('/update', 'App\Http\Controllers\HospitalController@update')->name('hospitals.update');
     Route::get('/{id}/delete', 'App\Http\Controllers\HospitalController@delete')->name('hospitals.delete');
 

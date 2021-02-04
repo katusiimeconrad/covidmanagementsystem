@@ -34,7 +34,10 @@ class HospitalController extends Controller
     }
 
     public function edit($id){
-        dd('edit');
+        
+        $hospital = Hospital::find($id);
+        $healthOfficers = $hospital->healthOfficer;
+        return view('hospitals.details', compact('healthOfficers', 'hospital'));
     }
 
     public function update(Request $request){
