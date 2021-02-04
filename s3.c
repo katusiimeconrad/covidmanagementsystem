@@ -17,8 +17,8 @@ struct patient{           /* structure of a patient going to be written to file*
     char lname[10];
     char date[11];
     char gender[2];
-    char category[10];
-    char officer[19]; 
+    char category[4];
+    char officer[25]; 
 };
 
 
@@ -45,7 +45,7 @@ void patientDetails(int sockfd){
     do{
         read(sockfd, buff, sizeof(buff));
         strcpy(hospital,buff);
-       if(strcmp(buff,"Mulago") == 0 ||strcmp(buff,"Mbuya") == 0){
+       if(strcmp(buff,"Mulago") == 0 ||strcmp(buff,"Mbuya") == 0 || strcmp(buff,"Kiruddu") == 0){
             strcpy(buff2,"valid");
             check = 1;
         }
@@ -69,7 +69,7 @@ void patientDetails(int sockfd){
             name[len-1] =0;
 
         //compare of name is a for valid user
-        if(strcmp(name,"Kigula") == 0){
+        if(strcmp(name,"Kigula Jesse") == 0){
             strcpy(buff2,"Valid Name");
             check = 1;
         }

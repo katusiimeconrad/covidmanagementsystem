@@ -13,8 +13,8 @@ struct patient{/* structure of a patient going to be written to file*/
     char lname[10];
     char date[11];
     char gender[2];
-    char category[10];
-    char officer[19];
+    char category[4];
+    char officer[25];
 };
 
 int main(void)

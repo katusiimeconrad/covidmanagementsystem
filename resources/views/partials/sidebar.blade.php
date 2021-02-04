@@ -15,7 +15,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{route('patients.index')}}" class="nav-link {{ (request()->is('patients*')) ? 'active' : '' }}">
+            <a href="#" class="nav-link {{ (request()->is('patients*')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-virus"></i>
               <p>
                 Patients

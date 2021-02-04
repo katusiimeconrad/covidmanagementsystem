@@ -14,7 +14,7 @@
     $first = "select * from districts";
     $second = mysqli_query($conn,$first);
 
-     //fetch names of agents and write to file.
+     //loop through each district file
      while($third = mysqli_fetch_assoc($second)){
           if($third['id'] == 1){
                $filename = "/opt/lampp/htdocs/UFT-PP---Recess/APP/kla.dat";
@@ -116,6 +116,7 @@
                }
           }
           $count = 0;
+
           while($count < 26){
                fseek($fp,199 * 56,SEEK_SET);
                fseek($fp,$count * 52,SEEK_CUR);
@@ -147,6 +148,8 @@
           $line = fgets($fp,17);
           $line = str_replace("\0","",$line);
           $z =0;
+
+          //
           if(strcmp($line,"complete") == 0){
                $check = "select * from agents where districtID = '$third[id]'";
                $check2 = mysqli_query($conn,$check);

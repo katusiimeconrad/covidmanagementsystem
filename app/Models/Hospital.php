@@ -22,6 +22,11 @@ class Hospital extends Model
 
     }
 
+    //Hospital has many health officers
+    public function patient() {
+        return $this->hasMany(Patient::class);
+
+    }
 
 
 }
