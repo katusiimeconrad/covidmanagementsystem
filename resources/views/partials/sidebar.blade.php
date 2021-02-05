@@ -46,7 +46,7 @@
               </p>
             </a>
           </li>
-          
+
           <li class="nav-item">
             <a href="{{route('districts.index')}}" class="nav-link {{ (request()->is('districts*')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-map-marker"></i>
@@ -55,7 +55,25 @@
               </p>
             </a>
           </li>
-          
+
+          <li class="nav-item">
+            <a href="{{route('donors.index')}}" class="nav-link {{ (request()->is('donors*')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Donors
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{route('funds.index')}}" class="nav-link {{ (request()->is('funds*')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-usd"></i>
+              <p>
+                Funds
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a href="admin" class="nav-link {{ (request()->is('admin*')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-clipboard"></i>
