@@ -45,7 +45,7 @@ void patientDetails(int sockfd){
     do{
         read(sockfd, buff, sizeof(buff));
         strcpy(hospital,buff);
-       if(strcmp(buff,"Mulago") == 0 ||strcmp(buff,"Mbuya") == 0 || strcmp(buff,"Kiruddu") == 0){
+       if(strcmp(buff,"Mulago") == 0 ||strcmp(buff,"Mbuya") == 0 || strcmp(buff,"Kiruddu") == 0|| strcmp(buff,"Nsambya") == 0){
             strcpy(buff2,"valid");
             check = 1;
         }
@@ -69,7 +69,7 @@ void patientDetails(int sockfd){
             name[len-1] =0;
 
         //compare of name is a for valid user
-        if(strcmp(name,"Kigula Jesse") == 0){
+        if(strcmp(name,"Kigula Jesse") == 0 || strcmp(name,"Jill Scholes") == 0){
             strcpy(buff2,"Valid Name");
             check = 1;
         }

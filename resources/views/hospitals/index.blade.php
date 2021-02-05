@@ -104,7 +104,7 @@
                                     <td>{{$hospital->district->districtName}}</td>
                                     <td>{{$hospital->hospitalType}}</td>
                                     <td>{{count($hospital->patient)}}</td>
-                                    <td>{{$hospital->officerNumber}}</td>
+                                    <td>{{count($hospital->healthOfficer)}}</td>
                                     <td class = "text-center">
                                         <a href="{{ route('hospitals.edit', $hospital->id) }}" class="btn btn-sm btn-primary" title = "Edit Hospital"><i class="fa fa-edit"></i></a>
                                     </td>

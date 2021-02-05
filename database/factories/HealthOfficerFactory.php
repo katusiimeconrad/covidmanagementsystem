@@ -1,0 +1,34 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\HealthOfficer;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class HealthOfficerFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = HealthOfficer::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'firstName'     =>  $this->faker->name,
+            'lastName'      =>  $this->faker->name,
+            'genderName'    =>  'Female',
+            'title'         =>  'healthOfficer',
+            'hospital_id'   =>  1, //general hospital id
+            'noOfPatients'  =>  98,
+            'admin_id'      => 1,
+        ];
+    }
+}

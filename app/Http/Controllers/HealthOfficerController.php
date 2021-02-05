@@ -36,9 +36,14 @@ class HealthOfficerController extends Controller
         $officer->firstName = $request->input('firstName');
         $officer->lastName = $request->input('lastName');
         $officer->genderName = $request->input('gender');
-        $officer->title = "healthOfficer";
         $officer->noOfPatients = 0;
         if($hospital){
+            if(count($hospital->healthofficer) == 0){
+                $officer->title = "Head healthOfficer";
+            }
+            else{
+                $officer->title = "healthOfficer";
+            }
             $officer->hospital_id = $hospital->id;
             $officer->status = "Active";
             $hospital = Hospital::find($hospital->id);
