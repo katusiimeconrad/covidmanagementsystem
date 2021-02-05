@@ -57,7 +57,7 @@ use App\Http\Controllers\DistrictController;
 
         });
 
-        //hospitals routes
+        //Officers routes
         Route::group(['prefix'  =>   'officers'], function() {
             Route::get('/', 'App\Http\Controllers\HealthOfficerController@index')->name('officers.index');
             Route::post('/store', 'App\Http\Controllers\HealthOfficerController@store')->name('officers.store');
@@ -66,6 +66,29 @@ use App\Http\Controllers\DistrictController;
             Route::get('/{id}/delete', 'App\Http\Controllers\HealthOfficerController@delete')->name('officers.delete');
 
         });
+
+        //Donor routes
+        Route::group(['prefix'  =>   'donors'], function() {
+            Route::get('/', 'App\Http\Controllers\DonorController@index')->name('donors.index');
+            Route::get('/{id}', 'App\Http\Controllers\DonorController@show')->name('donors.show');          //Information Relating to a paricular donor
+            Route::post('/store', 'App\Http\Controllers\DonorController@store')->name('donors.store');
+            Route::get('/{id}/edit', 'App\Http\Controllers\DonorController@edit')->name('donors.edit');
+            Route::post('/update', 'App\Http\Controllers\DonorController@update')->name('donors.update');
+            Route::get('/{id}/delete', 'App\Http\Controllers\DonorController@delete')->name('donors.delete');
+
+        });
+
+
+        //Funds Routes
+        Route::group(['prefix'  =>   'funds'], function() {
+        Route::get('/', 'App\Http\Controllers\FundController@index')->name('funds.index');
+        Route::get('/{id}', 'App\Http\Controllers\FundController@show')->name('funds.show');          //Information Relating to a paricular donor
+        Route::post('/store', 'App\Http\Controllers\FundController@store')->name('funds.store');
+        Route::get('/{id}/edit', 'App\Http\Controllers\FundController@edit')->name('funds.edit');
+        Route::post('/update', 'App\Http\Controllers\FundController@update')->name('funds.update');
+        Route::get('/{id}/delete', 'App\Http\Controllers\FundController@delete')->name('funds.delete');
+
+    });
 
     });
 
