@@ -21,3 +21,5 @@
 <!-- Select2 -->
 <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+<!--Org Chart-->
+<link href="{{asset('plugins/orgchart/orgchart.css')}}" rel="stylesheet" type="text/css"/>
