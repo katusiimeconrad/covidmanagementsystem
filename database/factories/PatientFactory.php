@@ -25,7 +25,7 @@ class PatientFactory extends Factory
             'firstName'     =>  $this->faker->name,
             'lastName'      =>  $this->faker->name,
             'genderName'    =>  'Female',
-            'health_officer_id'   =>  1, //general hospital id
+            'health_officer_id'   =>  4, //general hospital id
             'hospital_id'   =>  34,
             'category'      => 'yes',
         ];
