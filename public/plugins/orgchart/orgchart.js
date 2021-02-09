@@ -113,14 +113,14 @@
 				if ($tr.hasClass('contracted')) {
 					$tr.removeClass('contracted').addClass('expanded');
 					$tr.nextAll("tr").css('display', '');
-					$(this).attr('src', "/dist/img/orgchart.minus.png");
+					$(this).attr('src', '/dist/img/orgchart.minus.png');
 					// Update the <li> appropriately so that if the tree redraws collapsed/non-collapsed nodes
 					// maintain their appearance
 					$node.removeClass('collapsed');
 				} else {
 					$tr.removeClass('expanded').addClass('contracted');
 					$tr.nextAll("tr").css('display', 'none');
-					$(this).attr('src', "/dist/img/orgchart.plus.png");
+					$(this).attr('src', '/dist/img/orgchart.plus.png');
 					$node.addClass('collapsed');
 				}
 			});	
@@ -178,7 +178,7 @@
 					$nodeRow.nextAll('tr').css('display', 'none');
 					$nodeRow.removeClass('expanded');
 					$nodeRow.addClass('contracted');
-					$nodeRow.find('img.cover').attr('src', "/dist/img/orgchart.plus.png");
+					$nodeRow.find('img.cover').attr('src', '/dist/img/orgchart.plus.png');
 				} else {
 					$nodeDiv.addClass(item);
 				}

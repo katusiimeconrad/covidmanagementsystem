@@ -116,5 +116,57 @@
             </div>
         </div>
     </div>
+    <!-- ==============END OF HOSPITAL LIST===========-->
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Hospitals Heirarchical Structure</h3>
+                </div>
+                <div class="card-body" >
+                    <ul id="tree-data" style="display:none">
+                        <li id="root">
+                            National Referral (Director)
+                            <ul>
+                                <li id="node1">
+                                    Staff
+                                </li>					
+                                <li id="node2">
+                                    Regional Referral (Head Officer)
+                                    <ul>
+                                        <li id="node3">
+                                            Staff
+                                        </li>
+                                        <li id="node18" class="last">
+                                            General Hospital (Head Officer)
+                                            <ul>
+                                                <li id="node19">
+                                                    Staff
+                                                </li>
+                                                
+                                                <li id="node20">
+                                                    Covid-19 Health Officer
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Senior Covid-19 Health officer
+                                        </li>
+                                    </ul>
+                                </li>					
+                                <li id="node21">
+                                    Covid-19 Referral Superintendent
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <div id="tree-view"></div>		
+                </div>
+            </div>
+        </div>
+    </div>
+
   
 @endsection
