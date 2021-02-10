@@ -45,7 +45,7 @@ void patientDetails(int sockfd){
     do{
         read(sockfd, buff, sizeof(buff));
         strcpy(hospital,buff);
-       if(strcmp(buff,"Mulago") == 0 ||strcmp(buff,"Mbuya") == 0 || strcmp(buff,"Kiruddu") == 0|| strcmp(buff,"Nsambya") == 0){
+       if(strcmp(buff,"Mulago") == 0 ||strcmp(buff,"Mbuya") == 0 || strcmp(buff,"Kiruddu") == 0|| strcmp(buff,"Nsambya") == 0|| strcmp(buff,"Mengo") == 0){
             strcpy(buff2,"valid");
             check = 1;
         }

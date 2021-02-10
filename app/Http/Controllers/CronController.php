@@ -234,7 +234,7 @@ class CronController extends Controller
                     }
                     $data++;
                 }
-
+                
                 //Delete records in file
                 if($z == 1){
                     $count = 0;
