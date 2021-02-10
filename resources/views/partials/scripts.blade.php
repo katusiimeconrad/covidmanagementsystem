@@ -84,7 +84,10 @@
 
     // Get context with jQuery - using jQuery's .get() method.
     var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-    
+
+
+    //converting php array to javascript 
+    //array from many controller
     var yr20 = @json($a ?? '');
     var yr21 = @json($a ?? '');
 

@@ -19,6 +19,8 @@ use App\Http\Controllers\DistrictController;
         ->middleware('guest')
         ->name('login');
 
+    Route::get('paytest','App\Http\Controllers\TestController@index');
+
 
     require __DIR__.'/auth.php';
 
@@ -28,9 +30,7 @@ use App\Http\Controllers\DistrictController;
     //Authenticated user can access
     Route::group(['middleware' => ['auth']], function () {
 
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', 'App\Http\Controllers\DashboardController@dashboard')->name('dashboard');
 
         //patient routes
         Route::group(['prefix'  =>   'patients'], function() {
