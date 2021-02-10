@@ -9,14 +9,17 @@ use App\Models\Patient;
 class DashboardController extends Controller
 {
     public function dashboard(){
-     $patients = Patient::all()->groupBy('created_at');
-     dd($patients);
+     $patients = Patient::all();
 
-        //dd($patients);
-        foreach($patients as $patient){
-            //count(($patient->created_at->format('M Y')))8;
-            
+        /*foreach($patients as $patient){
+            dd($patient->submission);
         }
+        /*$students = Patient::orderBy('created_at')->get()->groupBy(function($data) {
+            return $data->created_at->format('M Y');
+        });
+        foreach ($students as $student) {
+            dd(count($student));
+        }*/
         return view('dashboard',compact('patients'));
     }
     
