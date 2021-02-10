@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hospital;
 use App\Models\District;
+use App\Models\HealthOfficer;
 
 class HospitalController extends Controller
 {
@@ -12,7 +13,12 @@ class HospitalController extends Controller
         
         $hospitals = Hospital::all();
         $districts = District::all();
-        return view('hospitals.index', compact('hospitals','districts'));
+        $a = array();
+        foreach ($hospitals as $hospital) {
+            $x = (count($hospital->healthOfficer));
+            array_push($a, $x);
+        }
+        return view('hospitals.index', compact('hospitals','districts', 'a'));
     }
 
     public function store(Request $request){
