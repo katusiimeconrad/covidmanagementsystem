@@ -21,6 +21,7 @@ class FundController extends Controller
 
     //Store funds
     public function store(Request $request) {
+        
         $fund = new Fund;
 
         if( $request->input('DirectAmount') ) {
@@ -30,7 +31,6 @@ class FundController extends Controller
 
             $fund->amountPaid = $request->input('DirectAmount');
             $fund->dateOfPayment = now();
-        //    $fund->admin_id =
 
             $fund->save();
 
@@ -51,7 +51,7 @@ class FundController extends Controller
             $fund->amountPaid = $request->input('Donation');
             $fund->dateOfPayment = now();
             $fund->donor_id = $donor->id;
-
+            $fund->admin_id = 1;
             $fund->save();
 
             return redirect()->route('funds.index');
