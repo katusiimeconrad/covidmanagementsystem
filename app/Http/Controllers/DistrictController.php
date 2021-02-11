@@ -8,7 +8,7 @@ use App\Models\District;
 class DistrictController extends Controller
 {
     public function index(){
-        
+
         $districts = District::all();
         return view('districts.index', compact('districts'));
     }
@@ -23,9 +23,9 @@ class DistrictController extends Controller
         $district->districtName = $request->input('districtName');
         $district->region = $request->input('districtRegion');
         $district->save();
-        
+
         return redirect()->route('districts.index');
-        
+
     }
 
     public function edit($id){
@@ -44,15 +44,15 @@ class DistrictController extends Controller
         $district->districtName = $request->input('districtName');
         $district->region = $request->input('districtRegion');
         $district->save();
-        
+
         return redirect()
             ->route('districts.edit', [
                 'id'        => $district->id,
             ]);
 
-        
 
-        
+
+
     }
 
     public function delete($id){

@@ -23,7 +23,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link {{ (request()->is('payments*')) ? 'active' : '' }}">
+            <a href="{{route('payments.index')}}" class="nav-link {{ (request()->is('payments*')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-money-bill"></i>
               <p>
                 Payments
@@ -67,7 +67,7 @@
 
           <li class="nav-item">
             <a href="{{route('funds.index')}}" class="nav-link {{ (request()->is('funds*')) ? 'active' : '' }}">
-              <i class="nav-icon fas fa-usd"></i>
+              <i class="nav-icon fas fa-credit-card"></i>
               <p>
                 Funds
               </p>

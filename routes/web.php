@@ -81,14 +81,24 @@ use App\Http\Controllers\DistrictController;
 
         //Funds Routes
         Route::group(['prefix'  =>   'funds'], function() {
-        Route::get('/', 'App\Http\Controllers\FundController@index')->name('funds.index');
-        Route::get('/{id}', 'App\Http\Controllers\FundController@show')->name('funds.show');          //Information Relating to a paricular donor
-        Route::post('/store', 'App\Http\Controllers\FundController@store')->name('funds.store');
-        Route::get('/{id}/edit', 'App\Http\Controllers\FundController@edit')->name('funds.edit');
-        Route::post('/update', 'App\Http\Controllers\FundController@update')->name('funds.update');
-        Route::get('/{id}/delete', 'App\Http\Controllers\FundController@delete')->name('funds.delete');
+            Route::get('/', 'App\Http\Controllers\FundController@index')->name('funds.index');
+            Route::get('/{id}', 'App\Http\Controllers\FundController@show')->name('funds.show');
+            Route::post('/store', 'App\Http\Controllers\FundController@store')->name('funds.store');
+            Route::get('/{id}/edit', 'App\Http\Controllers\FundController@edit')->name('funds.edit');
+            Route::post('/update', 'App\Http\Controllers\FundController@update')->name('funds.update');
+            Route::get('/{id}/delete', 'App\Http\Controllers\FundController@delete')->name('funds.delete');
 
-    });
+        });
+
+         //Payments Routes
+         Route::group(['prefix'  =>   'payments'], function() {
+            Route::get('/', 'App\Http\Controllers\PaymentController@index')->name('payments.index');
+            Route::get('/{id}', 'App\Http\Controllers\PaymentController@show')->name('payments.show');
+            Route::post('/store', 'App\Http\Controllers\PaymentController@store')->name('payments.store');
+            Route::get('/{id}/edit', 'App\Http\Controllers\PaymentController@edit')->name('payments.edit');
+            Route::post('/update', 'App\Http\Controllers\PaymentController@update')->name('payments.update');
+            Route::get('/{id}/delete', 'App\Http\Controllers\PaymentController@delete')->name('payments.delete');
+         });
 
     });
 

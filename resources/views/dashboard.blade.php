@@ -44,9 +44,9 @@
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>65</h3>
+          <h3></h3>
 
-          <p>Unique Visitors</p>
+          <p>Total Funds</p>
         </div>
         <div class="icon">
           <i class="ion ion-pie-graph"></i>
