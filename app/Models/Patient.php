@@ -10,6 +10,18 @@ class Patient extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $casts = [
+        'submission' => 'datetime',
+    ];
+
+    protected $fillable = [
+        'firstName',
+        'lastName',
+        'genderName',
+        'category',
+        'submission',
+    ];
+
 
     //Patient is added by one health officer
     public function healthOfficer() {

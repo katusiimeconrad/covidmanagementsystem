@@ -11,6 +11,10 @@ class Hospital extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $fillable = [
+        
+    ];
+
     //A hospital is in one district
     public function district() {
         return $this->BelongsTo(District::class);
@@ -19,13 +23,11 @@ class Hospital extends Model
     //Hospital has many health officers
     public function healthofficer() {
         return $this->hasMany(HealthOfficer::class);
-
     }
 
     //Hospital has many health officers
     public function patient() {
         return $this->hasMany(Patient::class);
-
     }
 
 

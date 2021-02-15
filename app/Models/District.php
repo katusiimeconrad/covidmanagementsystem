@@ -10,6 +10,10 @@ class District extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $fillable = [
+        'districtName',
+        'region'
+    ];
     //A District has many hospitals
     public function hospital() {
         return $this->hasMany(Hospital::class);

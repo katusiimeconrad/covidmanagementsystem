@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\District;
 use App\Models\Hospital;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,9 +26,9 @@ class HospitalFactory extends Factory
     public function definition()
     {
         return [
-            'hospitalName'  =>  $this->faker->name,
-            'hospitalType'  =>  'National Referral',
-            'district_id'   =>  4,
+            'hospitalName'  =>  $this->faker->streetName,
+            'hospitalType'  =>  $this->faker->randomElement(['General', 'Regional Referral', 'National Referral']),
+            'district_id'   =>  District::factory()->create()->id,
             'officerNumber' =>  0,
         ];
     }

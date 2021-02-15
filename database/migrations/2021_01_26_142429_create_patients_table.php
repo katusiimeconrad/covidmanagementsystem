@@ -19,7 +19,7 @@ class CreatePatientsTable extends Migration
             $table->string('lastName');
             $table->enum('genderName', ['Male', 'Female']);
             $table->enum('category', ['survived', 'died']);
-            $table->foreignId('healthofficer_id');
+            $table->foreignId('health_officer_id');
             $table->timestamps();
         });
     }

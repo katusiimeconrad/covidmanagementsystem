@@ -10,6 +10,10 @@ class HealthOfficer extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $fillable = [
+        
+    ];
+
     //A health officer works at a Hospital
     public function hospital() {
         return $this->belongsTo(Hospital::class);

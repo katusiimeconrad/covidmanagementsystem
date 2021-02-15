@@ -88,8 +88,8 @@
 
     //converting php array to javascript 
     //array from many controller
-    var yr20 = @json($a ?? '');
-    var yr21 = @json($a ?? '');
+    var yr20 = @json($yr20 ?? '');
+    var yr21 = @json($yr21 ?? '');
 
     var areaChartData = {
       labels  : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Sept', 'Oct', 'Nov', 'Dec'],

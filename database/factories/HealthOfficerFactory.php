@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\HealthOfficer;
+use App\Models\Hospital;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HealthOfficerFactory extends Factory
@@ -22,11 +23,11 @@ class HealthOfficerFactory extends Factory
     public function definition()
     {
         return [
-            'firstName'     =>  $this->faker->name,
-            'lastName'      =>  $this->faker->name,
-            'genderName'    =>  'Female',
+            'firstName'     =>  $this->faker->firstName,
+            'lastName'      =>  $this->faker->lastName,
+            'genderName'    =>  $this->faker->randomElement(['Female', 'Male']),
             'title'         =>  'healthOfficer',
-            'hospital_id'   =>  1, //general hospital id
+            'hospital_id'   =>  Hospital::factory()->create()->id, //general hospital id
             'noOfPatients'  =>  98,
             'admin_id'      => 1,
         ];

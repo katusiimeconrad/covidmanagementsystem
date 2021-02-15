@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\District;
 use Illuminate\Database\Seeder;
-use App\Models\HealthOfficer;
-use Faker\Factory as Faker;
 
-class HealthOfficerSeeder extends Seeder
+class DisrictSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +14,6 @@ class HealthOfficerSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\HealthOfficer::factory()->count(1)->create(); 
-        
+        District::factory()->count(20)->create();
     }
 }
