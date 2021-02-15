@@ -15,4 +15,10 @@ class Fund extends Model
         return $this->belongsTo(Donor::class);
     }
 
+    //Funds are registered by an Administrator
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
 }

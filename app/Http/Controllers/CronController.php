@@ -59,6 +59,7 @@ class CronController extends Controller
                         else{
                             $patient->genderName = "Female";
                         }
+                        $patient->submission = $date;
                         $patient->health_officer_id = $healthOfficer->id;
                         $patient->hospital_id = $hospital->id;
                         $patient->category = $category;
@@ -154,6 +155,7 @@ class CronController extends Controller
                         else{
                             $patient->genderName = "Female";
                         }
+                        $patient->submission = $date;
                         $patient->health_officer_id = $healthOfficer->id;
                         $patient->hospital_id = $hospital->id;
                         $patient->category = $category;

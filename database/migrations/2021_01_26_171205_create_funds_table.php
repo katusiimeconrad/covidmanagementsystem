@@ -17,8 +17,8 @@ class CreateFundsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('amountPaid');
             $table->date('dateOfPayment');
-            $table->foreignId('donor_id');
-            $table->foreignId('admin_id');
+            $table->foreignId('donor_id')->nullable();
+            $table->foreignId('admin_id')->nullable();
             $table->timestamps();
         });
     }
