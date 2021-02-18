@@ -42,6 +42,7 @@ class PaymentController extends Controller
 
         //Available Funds
         $available_funds = $funds->sum('amountPaid') - $payments->sum('amount');
+        $donations = $funds->whereNotNull('donor_id')->sum();
 
         //To make a payment, Availbale Funds must be greater than 100 million
         if( $available_funds > 10_000_000 ){
