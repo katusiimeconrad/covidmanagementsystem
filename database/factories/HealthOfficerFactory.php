@@ -27,7 +27,7 @@ class HealthOfficerFactory extends Factory
             'lastName'      =>  $this->faker->lastName,
             'genderName'    =>  $this->faker->randomElement(['Female', 'Male']),
             'title'         =>  'healthOfficer',
-            'hospital_id'   =>  Hospital::factory()->create()->id, //general hospital id
+            'hospital_id'   =>  rand(1,200), //general hospital id
             'noOfPatients'  =>  98,
             'admin_id'      => 1,
         ];

@@ -15,7 +15,7 @@ class HealthOfficerSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\HealthOfficer::factory()->count(1)->create(); 
+        HealthOfficer::factory()->count(300)->create(); 
         
     }
 }

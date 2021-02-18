@@ -28,7 +28,7 @@ class HospitalFactory extends Factory
         return [
             'hospitalName'  =>  $this->faker->streetName,
             'hospitalType'  =>  $this->faker->randomElement(['General', 'Regional Referral', 'National Referral']),
-            'district_id'   =>  District::factory()->create()->id,
+            'district_id'   =>  rand(1, 20),
             'officerNumber' =>  0,
         ];
     }
