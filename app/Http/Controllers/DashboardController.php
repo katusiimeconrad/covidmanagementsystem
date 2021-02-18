@@ -11,6 +11,10 @@ class DashboardController extends Controller
     public function dashboard(){
         $patients = Patient::all();
 
+        $deaths = Patient::where('category','=','symptomatic')->get();
+
+        $survival = Patient::where('category','=','assymptomatic')->get();
+
         //group patients by month and year
         $monthly_patients = Patient::orderBy('submission')->get()->groupBy(function($data) {
             return $data->submission->format('Y-m');
@@ -28,7 +32,7 @@ class DashboardController extends Controller
                 $yr21[$i-1] = $y;
             }
         }
-        return view('dashboard',compact('patients','yr20','yr21'));
+        return view('dashboard',compact('patients','deaths','survival','yr20','yr21'));
     }
     
 }

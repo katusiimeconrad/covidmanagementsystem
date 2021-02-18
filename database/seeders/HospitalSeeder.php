@@ -15,7 +15,7 @@ class HospitalSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Hospital::factory()->count(1)->create(); 
+        \App\Models\Hospital::factory()->count(200)->create(); 
         //factory(App\Models\Hospital::class, 3)->create();
     }
 }

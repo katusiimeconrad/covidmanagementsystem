@@ -16,7 +16,7 @@ class CronController extends Controller
             $path = base_path();
             $filename = $path."/".$filename;
 
-    
+        
             if ( file_exists($filename) && ($fp = fopen($filename, "r+"))!==false ) {
                 $fp = fopen($filename,"r+");
                 
@@ -42,6 +42,8 @@ class CronController extends Controller
                     $officer = substr($line,41,19);
                     $officer = str_replace("\0","",$officer);
                     $offi = explode(" ",$officer);
+
+                    
         
                     $healthOfficer = $hospital
                         ->healthofficer

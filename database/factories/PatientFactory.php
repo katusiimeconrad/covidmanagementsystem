@@ -28,11 +28,9 @@ class PatientFactory extends Factory
             'firstName'     =>  $this->faker->firstname,
             'lastName'      =>  $this->faker->lastname,
             'genderName'    =>  $this->faker->randomElement(['Female', 'Male']),
-            'hospital_id'   =>  Hospital::factory()->create()->id, //general hospital id
-            'health_officer_id'   =>  function(array $x) {
-                return HealthOfficer::factory()->create(['hospital_id' => $x['hospital_id']])->id;
-            },
-            'category'      => $this->faker->randomElement(['survived', 'died']),
+            'hospital_id'   =>  1,//rand(1, 300), //general hospital id
+            'health_officer_id'   =>  1,//rand(1,300),
+            'category'      => $this->faker->randomElement(['symptomatic', 'assymptomatic']),
             'submission'    => Carbon::now()->subDays(rand(0, 365))->format('Y-m-d'),
         ];
     }
