@@ -44,7 +44,7 @@ class PaymentController extends Controller
         $donations = $funds->whereNotNull('donor_id')->sum('amount');
 
         //To make a payment, Availbale Funds must be greater than 100 million
-        if( $available_funds > 10_000_000 ){
+        if( $available_funds > 100000000 ){
             /*
             Calculating Totals for Basic Pay of each category of official.
 
@@ -53,7 +53,7 @@ class PaymentController extends Controller
 
 
             */
-            static $base_pay = 5_000_000;
+            static $base_pay = 5000000;
 
             $directors_basic_pay = $base_pay;
             $superintendents_basic_pay = (1/2) * $directors_basic_pay;
@@ -77,7 +77,7 @@ class PaymentController extends Controller
 
             if( $basic_pay > ( $available_funds - $donations) ){
 
-                return $this->withFail('Not Enough Funds To Process Payments');
+                return redirect()->back()->withErrors(['msg', 'Not Enough Funds To Process Payments']);//$this->withFail('Not Enough Funds To Process Payments');
 
             } else {
                 //$new_payment = new Payment;
@@ -129,9 +129,7 @@ class PaymentController extends Controller
 
         }
 
-        return $this->withFail('Not Enough Funds To Process Payments');
-
-
+        return redirect()->back()->withErrors(['msg', 'Not Enough Funds To Process Payments']);
     }
 
     public function show($id) {

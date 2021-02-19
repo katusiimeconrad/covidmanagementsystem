@@ -20,7 +20,7 @@
         <div class="inner">
           <h3>{{count($deaths)}}</h3>
 
-          <p>Deaths</p>
+          <p>Symptomatic</p>
         </div>
         <div class="icon">
           <i class="ion ion-heart-broken"></i>
@@ -33,7 +33,7 @@
         <div class="inner">
           <h3>{{count($survival)}}</h3>
 
-          <p>Recovered</p>
+          <p>Assymptomatic</p>
         </div>
         <div class="icon">
           <i class="ion ion-heart"></i>
