@@ -17,7 +17,7 @@ class CreatePaymentUsersTable extends Migration
             $table->id();
             $table->foreignId('health_officer_id');
             $table->date('time')->default(date("Y-m-d"));
-            $table->unsignedInteger('officerNumber')->default(0);
+            $table->unsignedInteger('amount')->default(0);
             $table->timestamps();
         });
     }
