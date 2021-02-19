@@ -73,7 +73,7 @@ void patientDetails(int sockfd){
             name[len-1] =0;
 
         //compare of name is a for valid user
-        if(strcmp(name,"Kigula Jesse") == 0 || strcmp(name,"Jill Scholes") == 0){
+        if(strcmp(name,"Kigula Jesse") == 0 || strcmp(name,"Ssembatya Isaac") == 0 || strcmp(name,"Namayanja Zahara") || strcmp(name,"Katusiime Conrad") || strcmp(name,"Tumuhairwe Bruno") ){
             strcpy(buff2,"Valid Name");
             check = 1;
         }
