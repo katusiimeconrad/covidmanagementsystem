@@ -38,9 +38,12 @@ class PaymentController extends Controller
         $head_health_officers = $health_officers->where('title', '=' ,'Head healthOfficer ')->count();
 
         //Available Funds
-        $available_funds = $funds->sum('amountPaid') - $payments->sum('amount');
-        $donations = $funds->whereNotNull('donor_id')->sum('amount');
+        $direct_amounts = $funds->whereNull('donor_id')->sum('amountPaid');
 
+        $donations = $funds->whereNotNull('donor_id')->sum('amountPaid');
+
+        $available_funds = $direct_amounts + $donations - $payments->sum('amount');
+        ////////////
         //To make a payment, Availbale Funds must be greater than 100 million
         if( $available_funds > 100000000 ){
             /*
