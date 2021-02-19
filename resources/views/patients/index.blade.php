@@ -24,7 +24,13 @@
                             {{$patient->healthOfficer->lastName}}
                         </td>
                         <td>{{$patient->healthOfficer->hospital->district->districtName}}</td>
-                        <td>{{$patient->category}}</td>
+                        <td>
+                            @if ($patient->category == 'yes')
+                                Symptomatic
+                            @else
+                                Assymptomatic
+                            @endif
+                        </td>
                         <td>{{$patient->genderName}}</td>
                     </tr>
                 @endforeach

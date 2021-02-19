@@ -94,7 +94,7 @@
                                     <td>
                                         <a href="{{ route('officers.edit', $officer->id) }}" class="btn btn-sm btn-primary" title = "Edit Officer"><i class="fa fa-edit"></i></a>
 
-                                        <a href="{{ route('officers.delete', $officers->id) }}" class="btn btn-sm btn-danger" title = "Delete Fund"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        <a href="{{ route('officers.delete', $officer->id) }}" class="btn btn-sm btn-danger" title = "Delete Fund"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

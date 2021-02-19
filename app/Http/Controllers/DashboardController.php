@@ -13,9 +13,9 @@ class DashboardController extends Controller
 
         
 
-        $deaths = Patient::where('category','=','symptomatic')->get();
+        $deaths = Patient::where('category','=','yes')->get();
 
-        $survival = Patient::where('category','=','assymptomatic')->get();
+        $survival = Patient::where('category','=','no')->get();
 
         //group patients by month and year
         $monthly_patients = Patient::orderBy('submission')->get()->groupBy(function($data) {
