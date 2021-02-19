@@ -11,6 +11,8 @@ class DashboardController extends Controller
     public function dashboard(){
         $patients = Patient::all();
 
+        
+
         $deaths = Patient::where('category','=','symptomatic')->get();
 
         $survival = Patient::where('category','=','assymptomatic')->get();
@@ -27,11 +29,12 @@ class DashboardController extends Controller
             if (isset($monthly_patients['2020-'.$value])) {
                 $x = count($monthly_patients['2020-'.$value]);
                 $yr20[$i-1] = $x;
-            }else if (isset($monthly_patients['2021-'.$value])) {
+            }if (isset($monthly_patients['2021-'.$value])) {
                 $y = count($monthly_patients['2021-'.$value]);
                 $yr21[$i-1] = $y;
             }
         }
+        
         return view('dashboard',compact('patients','deaths','survival','yr20','yr21'));
     }
     

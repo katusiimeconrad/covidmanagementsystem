@@ -6,8 +6,9 @@
                 <h3 class="card-title">Health Officer Registration</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('officers.store') }}" method="POST">
+                <form action="{{ route('officers.update') }}" method="POST">
                     @csrf
+                    <input type = 'hidden' value = '{{$officer->id}}' name ='officer_id'> 
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
