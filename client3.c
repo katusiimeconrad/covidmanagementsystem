@@ -31,8 +31,8 @@ exit\n\
     
     do{
         printf("Enter hospital code: ");//Prompts the health officer to enter the district code.
-        scanf(" %s",buff2);//read the district code of the health official.
-        write(sockfd, buff2, sizeof(buff2));//send to the server the district code captured from the health officer
+        fgets(buff2,50,stdin);
+		write(sockfd, buff2, sizeof(buff2));//send to the server the district code captured from the health officer
         read(sockfd, buff, sizeof(buff));//read what is sent back from the server
         printf("%s\n", buff);//print what was returned
     }while(strcmp(buff,"invalid") == 0);
