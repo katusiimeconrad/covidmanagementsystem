@@ -41,6 +41,7 @@ use App\Http\Controllers\DistrictController;
         //district routes
         Route::group(['prefix'  =>   'districts'], function() {
             Route::get('/', 'App\Http\Controllers\DistrictController@index')->name('districts.index');
+            Route::get('/{id}', 'App\Http\Controllers\DistrictController@show')->name('districts.show');
             Route::post('/store', 'App\Http\Controllers\DistrictController@store')->name('districts.store');
             Route::get('/{id}/edit', 'App\Http\Controllers\DistrictController@edit')->name('districts.edit');
             Route::post('/update', 'App\Http\Controllers\DistrictController@update')->name('districts.update');

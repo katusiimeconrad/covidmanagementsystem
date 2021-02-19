@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\District;
+use App\Models\Hospital;
 
 class DistrictController extends Controller
 {
@@ -50,12 +51,20 @@ class DistrictController extends Controller
                 'id'        => $district->id,
             ]);
 
+    }
 
+    public function show($id){
+        $district = District::find($id);
+        $hospitals = Hospital::all()->where('district_id', $id );
 
+        return view('districts.show', compact('district', 'hospitals'));
 
     }
 
     public function delete($id){
-        dd('delete');
+        $district= District::find($id);
+        $district->delete();
+
+        return back();
     }
 }

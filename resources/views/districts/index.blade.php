@@ -58,7 +58,7 @@
                         </div>
                     </div>
                         <button type="submit" class="btn btn-info float-right" ><i class="fas fa-plus"></i> Add district</button>
-                    
+
                 </form>
             </div>
         </div>
@@ -69,7 +69,7 @@
             <div class="card card-success">
                 <div class="card-header">
                     <h3 class="card-title">All Registered districts
-                         
+
                     </h3>
                 </div>
                 <div class="card-body">
@@ -87,15 +87,15 @@
                         <tbody>
                             @foreach($districts as $district)
                                 <tr>
-                                    <td>{{$district->id}}</td>
-                                    <td>{{$district->districtName}}</td>
+                                    <td><a href="/districts/{{ $district->id }}">{{$district->id}} </a></td>
+                                    <td><a href="/districts/{{ $district->id }}">{{$district->districtName}} </a></td>
                                     <td>{{count($district->hospital)}}</td>
                                         <!-- count officers in district -->
                                             @php($officers = 0)
                                             @foreach($district->hospital as $hospital)
                                                 @php($officers = $officers + $hospital->officerNumber)
                                             @endforeach
-                                        <!-- end of officer count -->    
+                                        <!-- end of officer count -->
                                     <td>{{$officers}}</td>
                                         <!-- count patients in district -->
                                             @php($patients = 0)
@@ -103,11 +103,13 @@
                                                 @foreach($hospital->patient as $patient)
                                                     @php($patients++)
                                                 @endforeach
-                                            @endforeach    
+                                            @endforeach
                                         <!-- end of patient count -->
                                     <td>{{$patients}}</td>
                                     <td class = "text-center">
-                                        <a href="{{ route('districts.edit', $district->id) }}" class="btn btn-sm btn-primary" title = "view district"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('districts.edit', $district->id) }}" class="btn btn-sm btn-primary" title = "View district"><i class="fa fa-edit"></i></a>
+
+                                        <a href="{{ route('districts.delete', $district->id) }}" class="btn btn-sm btn-danger" title = "Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -117,5 +119,5 @@
             </div>
         </div>
     </div>
-  
+
 @endsection

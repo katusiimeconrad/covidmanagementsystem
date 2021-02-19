@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="district_id">District:</label>
                                 <select name="district_id" id="district_id" class="form-control select2bs4 @error('district_id') is-invalid @enderror" style="width: 100%;">
-                                    <option value = "0">Select A District</option> 
+                                    <option value = "0">Select A District</option>
                                     @foreach($districts as $district)
                                         @if (old('district_id') == $district->id)
                                             <option value="{{ $district->id }}" selected>{{$district->districtName }}</option>
@@ -63,11 +63,11 @@
                                 <div class="invalid-feedback active">
                                     <i class="fa fa-exclamation-circle fa-fw"></i> @error('district_id') <span>{{ $message }}</span> @enderror
                                 </div>
-                            </div>     
+                            </div>
                         </div>
                     </div>
                         <button type="submit" class="btn btn-info float-right" ><i class="fas fa-plus"></i> Add Hospital</button>
-                    
+
                 </form>
             </div>
         </div>
@@ -78,7 +78,7 @@
             <div class="card card-success">
                 <div class="card-header">
                     <h3 class="card-title">All Registered Hospitals
-                         
+
                     </h3>
                 </div>
                 <div class="card-body">
@@ -107,6 +107,8 @@
                                     <td>{{count($hospital->healthOfficer)}}</td>
                                     <td class = "text-center">
                                         <a href="{{ route('hospitals.edit', $hospital->id) }}" class="btn btn-sm btn-primary" title = "Edit Hospital"><i class="fa fa-edit"></i></a>
+
+                                        <a href="{{ route('hospitals.delete', $hospital->id) }}" class="btn btn-sm btn-danger" title = "Delete Hospital"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -131,7 +133,7 @@
                             <ul>
                                 <li id="node1">
                                     Staff
-                                </li>					
+                                </li>
                                 <li id="node2">
                                     Regional Referral (Head Officer)
                                     <ul>
@@ -144,7 +146,7 @@
                                                 <li id="node19">
                                                     Staff
                                                 </li>
-                                                
+
                                                 <li id="node20">
                                                     Covid-19 Health Officer
                                                 </li>
@@ -154,15 +156,15 @@
                                             Senior Covid-19 Health officer
                                         </li>
                                     </ul>
-                                </li>					
+                                </li>
                                 <li id="node21">
                                     Covid-19 Referral Superintendent
                                 </li>
                             </ul>
                         </li>
                     </ul>
-                    
-                    <div id="tree-view"></div>		
+
+                    <div id="tree-view"></div>
                 </div>
             </div>
         </div>
@@ -187,7 +189,7 @@
               </div>
               <!-- /.card -->
             </div>
-    
+
             <!-- /.col (LEFT) -->
             <div class="col-md-6">
               <!-- BAR CHART -->
@@ -210,5 +212,5 @@
         </div><!-- /.container-fluid -->
       </section>
 
-  
+
 @endsection

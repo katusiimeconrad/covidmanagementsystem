@@ -21,7 +21,7 @@ class FundController extends Controller
 
     //Store funds
     public function store(Request $request) {
-        
+
         $fund = new Fund;
 
         if( $request->input('DirectAmount') ) {
@@ -58,7 +58,25 @@ class FundController extends Controller
 
         }
 
+    }
 
+    /*
+    public function show( $id ){
+        $funds = Donor::find($id);
+        $donations = Fund::all()->where('donor_id', $id );
+
+        return view('donors.show',compact('donor', 'donations') );
+
+    }
+    */
+
+
+
+    public function delete($id){
+        $fund = Fund::find($id);
+        $fund->delete();
+
+        return back();
     }
 }
 

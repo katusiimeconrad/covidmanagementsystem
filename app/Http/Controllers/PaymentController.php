@@ -136,7 +136,9 @@ class PaymentController extends Controller
 
     public function show($id) {
 
+
         //
+
     }
 
     public function edit($id){
@@ -149,9 +151,11 @@ class PaymentController extends Controller
         //
     }
 
-    public function destroy($id) {
+    public function delete($id){
+        $payment = Payment::find($id);
+        $payment->delete();
 
-
+        return back();
     }
 
 }
