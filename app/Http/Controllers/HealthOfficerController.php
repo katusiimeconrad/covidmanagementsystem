@@ -68,7 +68,21 @@ class HealthOfficerController extends Controller
     }
 
     public function update(Request $request){
-        dd('update');
+        $this->validate($request, [
+            'firstName' =>  'required',
+            'lastName'  =>  'required',
+            'gender'  => 'required|notIn:0',
+        ]);
+        $officer = HealthOfficer::find($request->input('officer_id'));
+        $officer->firstName = $request->input('firstName');
+        $officer->lastName = $request->input('lastName');
+        $officer->save();
+
+        return redirect()->route('officers.edit', [
+            'id'    =>  $officer->id,
+        ]);
+
+
 
     }
 
