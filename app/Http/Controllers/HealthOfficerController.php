@@ -25,12 +25,12 @@ class HealthOfficerController extends Controller
         $minOfficer = Hospital::all()
                             ->where('hospitalType','=','General')
                             ->min('officerNumber');
-        
+
         $hospital = Hospital::where('officerNumber','=',$minOfficer)
                             ->where('officerNumber','<=','15')
                             ->where('hospitalType','=','General')
                             ->get()->first();
-        
+
         //create officer
         $officer = new healthOfficer;
         $officer->firstName = $request->input('firstName');
@@ -56,9 +56,9 @@ class HealthOfficerController extends Controller
         }
         $officer->admin_id = 1;
         $officer->save();
-        
+
         return redirect()->route('officers.index');
-        
+
     }
 
     public function edit($id){
@@ -67,7 +67,7 @@ class HealthOfficerController extends Controller
         return view("officer.edit", compact('officer','healthOfficers'));
     }
 
-    public function update(Request $request){   
+    public function update(Request $request){
         $this->validate($request, [
             'firstName' =>  'required',
             'lastName'  =>  'required',
@@ -83,11 +83,13 @@ class HealthOfficerController extends Controller
         ]);
 
 
-        
+
     }
 
     public function delete($id){
-        dd('delete');
-        
+        $healthOfficer = HealthOfficer::find($id);
+        $healthOfficer->delete();
+
+        return back();
     }
 }

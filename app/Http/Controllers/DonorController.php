@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Donor;
 use App\Models\Fund;
+use PhpParser\Node\Stmt\Do_;
 
 class DonorController extends Controller
 {
@@ -55,7 +56,10 @@ class DonorController extends Controller
     }
 
     public function delete($id){
-        dd('delete');
+        $donor = Donor::find($id);
+        $donor->delete();
+
+        return back();
 
     }
 }

@@ -105,6 +105,8 @@
                                         @endif
                                         <td>
                                             <a href="{{ route('funds.edit', $fund->id) }}" class="btn btn-sm btn-primary" title = "Edit Fund"><i class="fa fa-edit"></i></a>
+
+                                            <a href="{{ route('funds.delete', $fund->id) }}" class="btn btn-sm btn-danger" title = "Delete Fund"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

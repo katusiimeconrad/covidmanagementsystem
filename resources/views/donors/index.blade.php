@@ -82,6 +82,8 @@
                                     <td>{{$donor->gender}}</td>
                                     <td>
                                         <a href="{{ route('donors.edit', $donor->id) }}" class="btn btn-sm btn-primary" title = "Edit Donor"><i class="fa fa-edit"></i></a>
+
+                                        <a href="{{ route('donors.delete', $donor->id) }}" class="btn btn-sm btn-danger" title = "Delete Donor"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

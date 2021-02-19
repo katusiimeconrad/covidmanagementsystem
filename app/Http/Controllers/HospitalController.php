@@ -10,7 +10,7 @@ use App\Models\HealthOfficer;
 class HospitalController extends Controller
 {
     public function index(){
-        
+
         $hospitals = Hospital::all();
         $districts = District::all();
         $a = array();
@@ -34,9 +34,9 @@ class HospitalController extends Controller
         $hospital->hospitalType = $request->input('hospitalType');
         $hospital->district_id = $district->id;
         $hospital->save();
-        
+
         return redirect()->route('hospitals.index');
-        
+
     }
 
     public function edit($id){
@@ -55,22 +55,25 @@ class HospitalController extends Controller
         ]);
 
         $district = District::find($request->input('district_id'));
-        
+
         $hospital->hospitalName = $request->input('hospitalName');
         $hospital->hospitalType = $request->input('hospitalType');
         $hospital->district_id = $district->id;
         $hospital->save();
-    
+
         return redirect()
         ->route('hospitals.edit', [
             'id'    =>  $hospital->id,
         ]);
 
-        
-        
+
+
     }
 
     public function delete($id){
-        dd('delete'); 
+        $hospital = Hospital::find($id);
+        $hospital->delete();
+
+        return back();
     }
 }

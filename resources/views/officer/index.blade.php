@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-info float-right" ><i class="fas fa-plus"></i> Add Health Officer</button>
-                    
+
                 </form>
             </div>
         </div>
@@ -61,7 +61,7 @@
             <div class="card card-success">
                 <div class="card-header">
                     <h3 class="card-title">All Registered Hospitals
-                         
+
                     </h3>
                 </div>
                 <div class="card-body">
@@ -89,10 +89,12 @@
                                         <td>{{$officer->hospital->hospitalName}}</td>
                                     @endif
                                     <td>{{$officer->status}}</td>
-                                    
+
                                     <td>{{count($officer->patient)}}</td>
                                     <td>
                                         <a href="{{ route('officers.edit', $officer->id) }}" class="btn btn-sm btn-primary" title = "Edit Officer"><i class="fa fa-edit"></i></a>
+
+                                        <a href="{{ route('officers.delete', $officers->id) }}" class="btn btn-sm btn-danger" title = "Delete Fund"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -102,5 +104,5 @@
             </div>
         </div>
     </div>
-  
+
 @endsection
