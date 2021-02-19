@@ -7,10 +7,10 @@
     </div>
     @endif
 
-    @if(Session::has('fail'))
-    <div class="alert alert-danger">
-       {{Session::get('fail')}}
-    </div>
+    @if($errors->any())
+        <div class="alert alert-danger">
+            Not enough funds to make payment
+        </div>
     @endif
 
     <!-- FUNDS CARD -->
@@ -76,7 +76,7 @@
                             @foreach($payments as $payment)
                                 <tr>
                                     <td><a href="/payments/{{ $payment->id }}"> {{ $payment->id }} </a> </td>
-                                    <td><a href="/payments/{{ $payment->id }}"> {{ $payment->amount }} </a></td>
+                                    <td><a href="/payments/{{ $payment->id }}"> {{ number_format($payment->amount) }} </a></td>
                                     <td>{{ $payment->date }}</td>
                                 </tr>
                             @endforeach

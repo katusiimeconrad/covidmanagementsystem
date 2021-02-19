@@ -96,7 +96,7 @@
                                     <tr>
                                         <td>{{$fund->id}}</td>
 
-                                        <td>{{ $fund->amountPaid }}</td>
+                                        <td>{{ number_format($fund->amountPaid) }}</td>
 
                                         @if($fund->donor)
                                             <td><a href="/donors/{{ $fund->donor_id }}">  {{ $fund->donor->firstName }} {{$fund->donor->lastName}} </a></td>
