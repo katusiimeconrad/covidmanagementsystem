@@ -70,14 +70,19 @@
                                 <th>Payment ID</th>
                                 <th>Amount</th>
                                 <th>Date</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($payments as $payment)
                                 <tr>
-                                    <td><a href="/payments/{{ $payment->id }}"> {{ $payment->id }} </a> </td>
-                                    <td><a href="/payments/{{ $payment->id }}"> {{ number_format($payment->amount) }} </a></td>
+                                    <td> {{ $payment->id }} </td>
+                                    <td> {{ number_format($payment->amount) }}</td>
                                     <td>{{ $payment->date }}</td>
+                                    <td class = "text-center">
+                                        <a href="{{route('payments.show',$payment->id)}}" class="btn btn-sm btn-primary" title = "View payments"><i class="fa fa-edit"></i></a>
+                                    </td>
+
                                 </tr>
                             @endforeach
                         </tbody>

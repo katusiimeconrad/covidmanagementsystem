@@ -103,41 +103,10 @@ class PaymentController extends Controller
                 $admins_net = $admins_baisc_pay + $admins_bonus;
                 $general_healh_officers_net = $general_healh_officers_basic_pay + $general_healh_officers_bonus;
                 $senior_health_officers_net = $senior_health_officers_basic_pay + $senior_health_officers_bonus;
-                $head_health_officers_net = $head_health_officers_bonus;
+                $head_health_officers_net = $head_health_officers_basic_pay + $head_health_officers_bonus;
 
-                $allHealthOfficers = HealthOfficer::all();
-                foreach($allHealthOfficers as $ahealthOfficer){
-                    $a = HealthOfficer::find($ahealthOfficer->id);
-                    $apay = new PaymentUser;
-                    if($a->title == "Head healthOfficer"){
-                        $apay->officerNumber = $head_health_officers_net;
-                    }
-                    elseif($a->title == "superintendent"){
-                        $apay->officerNumber = $superintendents_net;
-                    }
-                    elseif($a->title == "senior healthOfficer"){
-                        $apay->officerNumber = $senior_health_officers_net;
-                    }
-                    elseif($a->title == "director covid-19"){
-                        $apay->officerNumber = $directors_net;
-                    }
-                    elseif($a->title == "healthOfficer"){
-                        $apay->officerNumber = $general_healh_officers_net;
-                    }
-                    $apay->health_officer_id = $a->id;
-                    $apay->time = now();
-                    $apay->save();
-                }
 
-                $allusers = User::all();
-                foreach($allusers as $onlyadmins){
-                    $b = User::find($onlyadmins->id);
-                    $bpay = new PaymentAdmin();
-                    $bpay->officerNumber = $admins_net;
-                    $bpay->user_id = $b->id;
-                    $bpay->time = now();
-                    $bpay->save();
-                }
+            
 
                 //Total Amount Paid
                 $total_payment = $basic_pay + $bonuses;
@@ -147,6 +116,43 @@ class PaymentController extends Controller
                 $new_payment->date = now();
                 $new_payment->save();
 
+                $allHealthOfficers = HealthOfficer::all();
+                foreach($allHealthOfficers as $ahealthOfficer){
+                    $a = HealthOfficer::find($ahealthOfficer->id);
+                    $apay = new PaymentUser;
+                    if($a->title == "Head healthOfficer"){
+                        $apay->amount = $head_health_officers_net;
+                    }
+                    elseif($a->title == "superintendent"){
+                        $apay->amount = $superintendents_net;
+                    }
+                    elseif($a->title == "senior healthOfficer"){
+                        $apay->amount = $senior_health_officers_net;
+                    }
+                    elseif($a->title == "director covid-19"){
+                        $apay->amount = $directors_net;
+                    }
+                    elseif($a->title == "healthOfficer"){
+                        $apay->amount = $general_healh_officers_net;
+                    }
+                    $apay->health_officer_id = $a->id;
+                    $apay->payment_id = $new_payment->id;
+                    $apay->time = now();
+                    $apay->save();
+                }
+
+                $allusers = User::all();
+                foreach($allusers as $onlyadmins){
+                    $b = User::find($onlyadmins->id);
+                    $bpay = new PaymentAdmin();
+                    $bpay->amount = $admins_net;
+                    $bpay->user_id = $b->id;
+                    $bpay->payment_id = $new_payment->id;
+                    $bpay->time = now();
+                    $bpay->save();
+                }
+
+                
                 $request->session()->now('Sucess', 'Payment Processed ');
                 return back();
             }
@@ -157,8 +163,11 @@ class PaymentController extends Controller
 
     public function show($id) {
 
+        $this_month = PaymentUser::where('payment_id','=',$id)->get();
+        $other = PaymentAdmin::where('payment_id','=',$id)->get();
 
-        //
+        
+        return view('payments.show',compact('this_month','other'));        
 
     }
 
