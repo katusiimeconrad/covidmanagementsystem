@@ -22,14 +22,15 @@ class HealthOfficerController extends Controller
         ]);
 
         //get hopital with least number of officers from general hospital only
-        $minOfficer = Hospital::all()
-                            ->where('hospitalType','=','General')
-                            ->min('officerNumber');
-
-        $hospital = Hospital::where('officerNumber','=',$minOfficer)
-                            ->where('officerNumber','<=','15')
-                            ->where('hospitalType','=','General')
-                            ->get()->first();
+        $hospitals = Hospital::where('hospitalType','=','General')
+                            ->get();
+        $min = 14; 
+        foreach($hospitals as $hospitala){
+            if(count($hospitala->healthofficer) <= $min && $min < 15){
+                $min = count($hospitala->healthofficer);
+                $hospital = $hospitala;
+            }
+        }
 
         //create officer
         $officer = new healthOfficer;
@@ -59,6 +60,30 @@ class HealthOfficerController extends Controller
 
         return redirect()->route('officers.index');
 
+    }
+
+    public function assign($id){
+        $officer = HealthOfficer::find($id);
+        //get hopital with least number of officers from general hospital only
+        $hospitals = Hospital::where('hospitalType','=','National Referral')
+                            ->get();
+        $min = 1000; 
+        foreach($hospitals as $hospitala){
+            if(count($hospitala->healthofficer) <= $min){
+                $min = count($hospitala->healthofficer);
+                $hospital = $hospitala;
+            }
+        }
+
+        if(count($hospital->healthofficer) == 0){
+            $officer->title = "director covid-19";
+        }
+        
+        $officer->hospital_id = $hospital->id;
+        $officer->status = "Active";
+        $officer->save();
+
+        return redirect()->back();
     }
 
     public function edit($id){

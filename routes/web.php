@@ -65,7 +65,7 @@ use App\Http\Controllers\DistrictController;
             Route::get('/{id}/edit', 'App\Http\Controllers\HealthOfficerController@edit')->name('officers.edit');
             Route::post('/update', 'App\Http\Controllers\HealthOfficerController@update')->name('officers.update');
             Route::get('/{id}/delete', 'App\Http\Controllers\HealthOfficerController@delete')->name('officers.delete');
-
+            Route::get('/assign/{id}','App\Http\Controllers\HealthOfficerController@assign')->name('assign.hospital');
         });
 
         //Donor routes
@@ -80,6 +80,7 @@ use App\Http\Controllers\DistrictController;
         });
 
 
+        
         //Funds Routes
         Route::group(['prefix'  =>   'funds'], function() {
             Route::get('/', 'App\Http\Controllers\FundController@index')->name('funds.index');

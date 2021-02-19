@@ -9,8 +9,8 @@
 
 struct patient{/* structure of a patient going to be written to file*/
     int  patientNum;
-    char fname[10];
-    char lname[10];
+    char fname[15];
+    char lname[15];
     char date[11];
     char gender[2];
     char category[4];
@@ -23,7 +23,7 @@ int main(void)
     int officer = 0;
     int count = 0;
     struct patient one = {0,"","","","","",""};
-    FILE *fp = fopen("Bufumbo.dat","wb");
+    FILE *fp = fopen("Mbuya.dat","wb");
     if(fp == NULL){
         perror("failed: ");
         exit(0);

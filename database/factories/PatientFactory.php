@@ -33,5 +33,15 @@ class PatientFactory extends Factory
             'category'      => $this->faker->randomElement(['yes', 'no']),
             'submission'    => Carbon::now()->subDays(rand(0, 365))->format('Y-m-d'),
         ];
+
+        /*return [
+            'firstName'     =>  $this->faker->firstname,
+            'lastName'      =>  $this->faker->lastname,
+            'genderName'    =>  $this->faker->randomElement(['Female', 'Male']),
+            'hospital_id'   =>  5,//rand(1, 300), //general hospital id
+            'health_officer_id'   =>  3,//rand(1,300),
+            'category'      => $this->faker->randomElement(['yes', 'no']),
+            'submission'    => Carbon::now()->subDays(rand(0, 365))->format('Y-m-d'),
+        ];*/
     }
 }

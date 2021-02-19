@@ -51,7 +51,11 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Hospital</label>
-                                <input type="text" class="form-control" value = "{{$officer->hospital->hospitalName}}" disabled>
+                                @if($officer->hospital_id == 200)
+                                    <input type="text" class="form-control" value = "Not assigned" disabled>
+                                @else
+                                    <input type="text" class="form-control" value = "{{$officer->hospital->hospitalName}}" disabled>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -73,6 +77,10 @@
                     </div>
                     <button type="submit" class="btn btn-info float-right" ><i class="fas fa-plus"></i> Edit Health Officer</button>
                 </form>
+                @if($officer->hospital_id == 200)
+                    <a href="{{route('assign.hospital',$officer->id)}}" class="btn btn-success float-right" > Assign Hospital</a>
+                @endif
+                    
             </div>
         </div>
     <!-- ==============END OF EDIT OFFICER===========-->

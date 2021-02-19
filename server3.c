@@ -13,8 +13,8 @@
 
 struct patient{           /* structure of a patient going to be written to file*/
     int  patientNum;   
-    char fname[10];
-    char lname[10];
+    char fname[15];
+    char lname[15];
     char date[11];
     char gender[2];
     char category[4];
@@ -27,8 +27,8 @@ void patientDetails(int sockfd){
     char buff2[60];//used to store the outgoing messages.    
     char hospital[15];//used to store hospital
     char temphospital[15];//temporary hospital holder
-    char hosp[15];
-    char name[15];//used to store name
+    char hosp[25];
+    char name[35];//used to store name
     int check = 0;// used to check if a criteria is matched 
     int len = 0; //length of a buff copied into a variable
     char fun[60];//choosing a function
@@ -82,7 +82,6 @@ void patientDetails(int sockfd){
             check = 0;
         }
         write(sockfd,buff2, sizeof(buff2));
-        printf("%d", check);
     }while(check == 0);
 
     //FUNCTIONS e.g search, check_status, addfile.
@@ -107,8 +106,8 @@ void patientDetails(int sockfd){
             textFile = strstr(ptr,".txt");
             if(textFile){//for insertion from textfile
                 int officer;
-                char buff[201];
-                char buff2[201];
+                char buff[10000];
+                char buff2[10000];
                 char filename[255] = "";
                 strcat(filename,ptr);
                 char filename2[255] = "";
@@ -118,7 +117,7 @@ void patientDetails(int sockfd){
                 FILE *fp2 = fopen(filename2,"rb+"); if(fp2==NULL){perror("Failed to open' ");}//data file to which member structure is to be uploaded
                 do{
                     struct patient one = {0,"","","","","",""};
-                    fgets(buff,201,fp);
+                    fgets(buff,10000,fp);
                     len = strlen(buff);
                     if(buff[len-1] == '\n')
                         buff[len-1] =0;//get rid of that pesky newline character =)
@@ -127,11 +126,11 @@ void patientDetails(int sockfd){
                     while(ptr2 != NULL){ //copying the buff contents into the structure member
                         if(ptr2 != NULL)
                             strcpy(buff2,ptr2);
-                        if(strcmp(one.fname,"")==0) { strcpy(one.fname,buff2);; printf(" %s",one.fname);}
-                        else if(strcmp(one.lname,"")==0) {strcpy(one.lname,buff2); printf(" %s",one.lname);}
-                        else if(strcmp(one.date,"")==0) {strcpy(one.date,buff2);printf(" %s",one.date);}
-                        else if(strcmp(one.gender,"")==0){strcpy(one.gender,buff2); printf(" %s",one.gender);}
-                        else if(strcmp(one.category,"")==0) {strcpy(one.category,buff2);strcpy(one.officer,name);printf(" %s",one.category);printf(" %s\n",one.officer);}
+                        if(strcmp(one.fname,"")==0) { strcpy(one.fname,buff2);}
+                        else if(strcmp(one.lname,"")==0) {strcpy(one.lname,buff2); }
+                        else if(strcmp(one.date,"")==0) {strcpy(one.date,buff2);}
+                        else if(strcmp(one.gender,"")==0){strcpy(one.gender,buff2); }
+                        else if(strcmp(one.category,"")==0) {strcpy(one.category,buff2);strcpy(one.officer,name);}
                         strcpy(buff2,"");
                         ptr2 = strtok(NULL,delim);                          
                     }
