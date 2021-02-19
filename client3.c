@@ -22,7 +22,8 @@ void addPatient(int sockfd){
 
     printf("          Welcome\n\
 ---------------------------------\n\
-Addpatient FirstName LastName,date,gender,category\n\
+Addpatient FirstName LastName,date(Y-m-d),gender(M,F),category(Yes,No)\n\
+Addpatient filename.txt \n\
 get_statement\n\
 Check_status\n\
 Search criteria (name or date)\n\
