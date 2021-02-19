@@ -86,9 +86,6 @@
                     @endforeach
                     </ul>
                 </li>
-                <li>
-                    Hey
-                </li>
             </ul>
         </li>
     </ul>
