@@ -23,14 +23,7 @@ int main(void)
     int officer = 0;
     int count = 0;
     struct patient one = {0,"","","","","",""};
-    FILE *fp = fopen("Mbuya.dat","wb");
-    /*
-    printf("Fname: %d",strlen(one.fname));
-    printf("\nLname: %d",strlen(one.lname));
-    printf("\nGender: %d",strlen(one.gender));
-    printf("\nCategory: %d",strlen(one.category));
-    printf("\nOfficer: %d\n",strlen(one.officer));
-    */
+    FILE *fp = fopen("Bufumbo.dat","wb");
     if(fp == NULL){
         perror("failed: ");
         exit(0);

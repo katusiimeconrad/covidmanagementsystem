@@ -15,13 +15,14 @@ void addPatient(int sockfd){
 
     char buff[60];//used to read data from socket
 	char buff2[60];//used to write data to socket
+    char buff3[255];//search terms.
 	char fun[60];//choosing a function
 	char *ptr = NULL;//a pointer to the function
     char delim[] = " ";// what to separate the functions by
 
     printf("          Welcome\n\
 ---------------------------------\n\
-Addpatient patient_name, date, gender, category\n\
+Addpatient FirstName LastName,date,gender,category\n\
 get_statement\n\
 Check_status\n\
 Search criteria (name or date)\n\
@@ -29,15 +30,15 @@ exit\n\
 ---------------------------------\n");
     
     do{
-        printf("Enter district code: ");//Prompts the health officer to enter the district code.
-        scanf(" %s",buff2);//read the district code of the health official.
-        write(sockfd, buff2, sizeof(buff2));//send to the server the district code captured from the health officer
+        printf("Enter hospital code: ");//Prompts the health officer to enter the district code.
+        fgets(buff2,50,stdin);
+		write(sockfd, buff2, sizeof(buff2));//send to the server the district code captured from the health officer
         read(sockfd, buff, sizeof(buff));//read what is sent back from the server
         printf("%s\n", buff);//print what was returned
     }while(strcmp(buff,"invalid") == 0);
     
 	do{
-		printf("Enter name: ");
+		printf("Enter Officer Name e.g (John Rubadiri): ");
 		fgets(buff2,50,stdin);
 		//scanf(" %s",buff2);//read the district code of the health official.
 		write(sockfd, buff2, sizeof(buff2));
@@ -56,12 +57,12 @@ exit\n\
 		ptr = strtok(fun,delim);
 		if(strcmp(fun,"Search")==0){
 			printf("       Records     \n");
-			read(sockfd, buff2, sizeof(buff2));
-			printf("%s",buff2);
+			read(sockfd, buff3, sizeof(buff3));
+			printf("%s",buff3);
 		}
 		if(strcmp(buff,"Check_status")==0){
 			read(sockfd, buff2, sizeof(buff2));
-			printf("%s",buff2);
+			printf("Cases: %s\n",buff2);
 		}
    	}while(strcmp(buff,"exit") != 0);
   	printf("\nThank You and Good Bye\n");
