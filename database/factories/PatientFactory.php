@@ -28,9 +28,9 @@ class PatientFactory extends Factory
             'firstName'     =>  $this->faker->firstname,
             'lastName'      =>  $this->faker->lastname,
             'genderName'    =>  $this->faker->randomElement(['Female', 'Male']),
-            'hospital_id'   =>  1,//rand(1, 300), //general hospital id
-            'health_officer_id'   =>  1,//rand(1,300),
-            'category'      => $this->faker->randomElement(['symptomatic', 'assymptomatic']),
+            'hospital_id'   =>  rand(1,5),//rand(1, 300), //general hospital id
+            'health_officer_id'   =>  rand(1,5),//rand(1,300),
+            'category'      => $this->faker->randomElement(['yes', 'no']),
             'submission'    => Carbon::now()->subDays(rand(0, 365))->format('Y-m-d'),
         ];
     }
