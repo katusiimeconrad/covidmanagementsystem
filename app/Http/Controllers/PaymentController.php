@@ -31,27 +31,25 @@ class PaymentController extends Controller
 
         //Getting the number of officers of each category
         $admins = $administrators->count();
-        $directors = $health_officers->where('title', 'Director')->count();
-        $superintendents = $health_officers->where('title', 'Superintendent')->count();
-        $general_healh_officers = $health_officers->where('title', 'General')->count();
-        $senior_health_officers = $health_officers->where('title', 'Senior')->count();
-        $head_health_officers = $health_officers->where('title', 'Head')->count();
-
-
+        $directors = $health_officers->where('title', '=' ,'director covid-19')->count();
+        $superintendents = $health_officers->where('title', '=' ,'superintendent')->count();
+        $general_healh_officers = $health_officers->where('title', '=' , 'healthOfficer')->count();
+        $senior_health_officers = $health_officers->where('title', '=' , 'senior healthOfficer')->count();
+        $head_health_officers = $health_officers->where('title', '=' ,'Head healthOfficer ')->count();
 
         //Available Funds
-        $available_funds = $funds->sum('amountPaid') - $payments->sum('amount');
-        $donations = $funds->whereNotNull('donor_id')->sum('amount');
+        $direct_amounts = $funds->whereNull('donor_id')->sum('amountPaid');
 
+        $donations = $funds->whereNotNull('donor_id')->sum('amountPaid');
+
+        $available_funds = $direct_amounts + $donations - $payments->sum('amount');
+        ////////////
         //To make a payment, Availbale Funds must be greater than 100 million
         if( $available_funds > 100000000 ){
             /*
-            Calculating Totals for Basic Pay of each category of official.
-
-            As:
-            sum of category's basic pay = (basic pay)
-
-
+                Calculating Totals for Basic Pay of each category of official.
+                As:
+                sum of category's basic pay = (basic pay)
             */
             static $base_pay = 5000000;
 
@@ -76,9 +74,7 @@ class PaymentController extends Controller
             $basic_pay = $directors_basic_pay_sum + $superintendents_basic_pay_sum + $admins_baisc_pay_sum + $general_healh_officers_basic_pay_sum + $senior_health_officers_basic_pay_sum + $head_health_officers_basic_pay_sum;
 
             if( $basic_pay > ( $available_funds - $donations) ){
-
                 return redirect()->back()->withErrors(['msg', 'Not Enough Funds To Process Payments']);//$this->withFail('Not Enough Funds To Process Payments');
-
             } else {
                 //$new_payment = new Payment;
 

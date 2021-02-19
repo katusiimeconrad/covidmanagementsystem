@@ -24,4 +24,10 @@ class HealthOfficer extends Model
         return $this->hasMany(Patient::class);
     }
 
+    public function payments()
+    {
+        return $this->hasMany(PaymentUser::class);
+    }
+
+
 }
