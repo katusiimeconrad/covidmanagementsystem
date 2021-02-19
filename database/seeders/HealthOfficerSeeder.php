@@ -15,7 +15,58 @@ class HealthOfficerSeeder extends Seeder
      */
     public function run()
     {
-        HealthOfficer::factory()->count(300)->create(); 
+        HealthOfficer::create([
+            'firstName'     =>  'Ssembatya',
+            'lastName'      =>  'Isaac',
+            'genderName'    =>  'Male',
+            'title'         =>  'Head healthOfficer',
+            'hospital_id'   =>  1, //general hospital id
+            'noOfPatients'  =>  98,
+            'admin_id'      => 1,
+        ]);
+
+        HealthOfficer::create([
+            'firstName'     =>  'Katusiime',
+            'lastName'      =>  'Conrad',
+            'genderName'    =>  'Male',
+            'title'         =>  'Head healthOfficer',
+            'hospital_id'   =>  2, //general hospital id
+            'noOfPatients'  =>  98,
+            'admin_id'      => 1,
+        ]);
+
+        HealthOfficer::create([
+            'firstName'     =>  'Kigula',
+            'lastName'      =>  'Jesse',
+            'genderName'    =>  'Male',
+            'title'         =>  'Head healthOfficer',
+            'hospital_id'   =>  3, //general hospital id
+            'noOfPatients'  =>  98,
+            'admin_id'      => 1,
+        ]);
+
+        HealthOfficer::create([
+            'firstName'     =>  'Namayanja',
+            'lastName'      =>  'Zahara',
+            'genderName'    =>  'Female',
+            'title'         =>  'healthOfficer',
+            'hospital_id'   =>  1, //general hospital id
+            'noOfPatients'  =>  98,
+            'admin_id'      => 1,
+        ]);
+
+        HealthOfficer::create([
+            'firstName'     =>  'Tumuhairwe',
+            'lastName'      =>  'Bruno',
+            'genderName'    =>  'Male',
+            'title'         =>  'healthOfficer',
+            'hospital_id'   =>  2, //general hospital id
+            'noOfPatients'  =>  98,
+            'admin_id'      => 1,
+        ]);
+
+        
+        //HealthOfficer::factory()->count(300)->create(); 
         
     }
 }
