@@ -19,7 +19,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
             <div class="inner">
-                <h3>{{ $available_funds }}</h3>
+                <h3>{{ number_format($available_funds)}}</h3>
 
                 <p>Available Funds</p>
             </div>
