@@ -49,7 +49,7 @@ void patientDetails(int sockfd){
         if(hospital[len-1] == '\n')
             hospital[len-1] =0;
 
-       if(strcmp(hospital,"Mengo") == 0 || strcmp(hospital,"Mbuya") == 0 ||  strcmp(hospital,"Makerere") == 0 || strcmp(hospital,"Ruhoma") == 0 || strcmp(hospital,"Bufumbo") == 0 || strcmp(hospital,"Ngoma") == 0 || strcmp(hospital,"Kiruddu") == 0){
+       if(strcmp(hospital,"Mengo") == 0 || strcmp(hospital,"Mbuya") == 0 ||  strcmp(hospital,"Makerere") == 0 || strcmp(hospital,"Ruhoma") == 0 || strcmp(hospital,"Bufumbo") == 0 || strcmp(hospital,"Ngoma") == 0 || strcmp(hospital,"Kiruddu") == 0 || strcmp(hospital,"Nsambya") == 0){
             strcpy(buff2,"valid");
             check = 1;
         }
@@ -73,7 +73,7 @@ void patientDetails(int sockfd){
             name[len-1] =0;
 
         //compare of name is a for valid user
-        if(strcmp(name,"Kigula Jesse") == 0 || strcmp(name,"Ssembatya Isaac") == 0 || strcmp(name,"Namayanja Zahara") || strcmp(name,"Katusiime Conrad") || strcmp(name,"Tumuhairwe Bruno") ){
+        if(strcmp(name,"Kigula Jesse") == 0 || strcmp(name,"Ssembatya Isaac") == 0 || strcmp(name,"Namayanja Zahara") == 0 || strcmp(name,"Katusiime Conrad") == 0 || strcmp(name,"Tumuhairwe Bruno") == 0 || strcmp(name,"Mary Nsabagwe") == 0){
             strcpy(buff2,"Valid Name");
             check = 1;
         }

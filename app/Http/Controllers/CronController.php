@@ -7,6 +7,13 @@ use App\Models\Hospital;
 use App\Models\District;
 use App\Models\HealthOfficer;
 use App\Models\Patient;
+use App\Models\Payment;
+use App\Models\User;
+use App\Models\PaymentUser;
+use App\Models\Donor;
+use App\Models\Fund;
+use DB;
+
 class CronController extends Controller
 {
     function index(){
@@ -23,7 +30,6 @@ class CronController extends Controller
                 $z = 0;
                 $data = 0;
                 $number = 0;
-                $acount = 0;
                 while($data < 200){
                     
                     
@@ -77,9 +83,16 @@ class CronController extends Controller
                         $patient->save();
                         $z = 1;
                         
+                        $patientNo = count($healthOfficer->patient);
+                        $patientNo =    count(
+                                            DB::table('patients')
+                                                ->where('health_officer_id', $healthOfficer->id)
+                                                ->get()
+                                        );
+                        
+
                         //Upgrade a covid health officer
-                        if(count($healthOfficer->patient) >= 100 && count($healthOfficer->patient) < 900 && ($healthOfficer->title != "senior healthOfficer" || $healthOfficer->title != "superintendent")){
-                    
+                        if( $patientNo >= 100 && $patientNo < 900 && ($healthOfficer->title != "senior healthOfficer" || $healthOfficer->title != "superintendent")){
                             //get hopital with least number of officers from regional referral hospital only
                             $hospitals2 = Hospital::where('hospitalType','=','Regional Referral')
                                                 ->get();
@@ -91,9 +104,8 @@ class CronController extends Controller
                                 }
                             }
 
-                            
+                        
                             if($hospital2){
-                                
                                 $officer = HealthOfficer::find($healthOfficer->id);
                                 if(count($hospital2->healthofficer) == 0){
                                     $officer->title = "superintendent";
@@ -116,15 +128,40 @@ class CronController extends Controller
                             }
                             
                         }
-                        elseif(count($healthOfficer->patient) >= 900 && ($healthOfficer->title != "covid-19 consultant" || $healthOfficer->title != "director covid-19")){
+                        if($patientNo >= 900 && ($healthOfficer->title != "covid-19 consultant" || $healthOfficer->title != "director covid-19")){
+                            $administrators = User::all();
+                            $health_officers = HealthOfficer::all();
+                            $funds = Fund::all();
+                            $payments = Payment::all();
+
+                            //Available Funds
+                            $direct_amounts = $funds->whereNull('donor_id')->sum('amountPaid');
+                            $donations = $funds->whereNotNull('donor_id')->sum('amountPaid');
+                            $available_funds = $direct_amounts + $donations - $payments->sum('amount');
+
                             $officer = HealthOfficer::find($healthOfficer->id);
                             $officer->title = "covid-19 consultant";    
                             $officer->hospital_id = 200;
                             $officer->status = "Pending";
                             $officer->save();
+
+                            if($available_funds > 10000000){
+                                $new_payment = new Payment;
+                                $new_payment->amount = 10000000;
+                                $new_payment->date = now();
+                                $new_payment->save();
+
+                                $apay = new PaymentUser;
+                                $apay->amount = 10000000;
+                                $apay->health_officer_id = $officer->id;
+                                $apay->payment_id = $new_payment->id;
+                                $apay->time = now();
+                                $apay->save();
+                            }
+    
                         }
                     }
-                        
+                            
                     $healthOfficer = $hospital
                         ->healthofficer
                         ->where('firstName','=',$offi[0])
@@ -148,10 +185,16 @@ class CronController extends Controller
                         $patient->save();
                         $z = 1;
                         
-            
+                        $patientNo = count($healthOfficer->patient);
+                        $patientNo =    count(
+                                            DB::table('patients')
+                                                ->where('health_officer_id', $healthOfficer->id)
+                                                ->get()
+                                        );
+                        
+
                         //Upgrade a covid health officer
-                        if(count($healthOfficer->patient) >= 100 && count($healthOfficer->patient) < 900 && ($healthOfficer->title != "senior healthOfficer" || $healthOfficer->title != "superintendent")){
-                    
+                        if( $patientNo >= 100 && $patientNo < 900 && ($healthOfficer->title != "senior healthOfficer" || $healthOfficer->title != "superintendent")){
                             //get hopital with least number of officers from regional referral hospital only
                             $hospitals2 = Hospital::where('hospitalType','=','Regional Referral')
                                                 ->get();
@@ -187,12 +230,37 @@ class CronController extends Controller
                             }
                             
                         }
-                        elseif(count($healthOfficer->patient) >= 900 && ($healthOfficer->title != "covid-19 consultant" || $healthOfficer->title != "director covid-19")){
+                        if($patientNo >= 900 && ($healthOfficer->title != "covid-19 consultant" || $healthOfficer->title != "director covid-19")){
+                            $administrators = User::all();
+                            $health_officers = HealthOfficer::all();
+                            $funds = Fund::all();
+                            $payments = Payment::all();
+
+                            //Available Funds
+                            $direct_amounts = $funds->whereNull('donor_id')->sum('amountPaid');
+                            $donations = $funds->whereNotNull('donor_id')->sum('amountPaid');
+                            $available_funds = $direct_amounts + $donations - $payments->sum('amount');
+
                             $officer = HealthOfficer::find($healthOfficer->id);
                             $officer->title = "covid-19 consultant";    
                             $officer->hospital_id = 200;
                             $officer->status = "Pending";
                             $officer->save();
+
+                            if($available_funds > 10000000){
+                                $new_payment = new Payment;
+                                $new_payment->amount = 10000000;
+                                $new_payment->date = now();
+                                $new_payment->save();
+
+                                $apay = new PaymentUser;
+                                $apay->amount = 10000000;
+                                $apay->health_officer_id = $officer->id;
+                                $apay->payment_id = $new_payment->id;
+                                $apay->time = now();
+                                $apay->save();
+                            }
+    
                         }
                     }
                         
@@ -219,7 +287,7 @@ class CronController extends Controller
                         $count++;   
                     }
                 }
-
+                
                 fseek($fp,-4,SEEK_END);
                 fputs($fp,"\0");
             }
